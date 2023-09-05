@@ -1,4 +1,5 @@
 \contentsline {section}{Problem 1 (2 points)}{3}{section*.2}%
 \contentsline {section}{Problem 2 (2 points)}{10}{section*.12}%
 \contentsline {section}{Problem 3 (2 points)}{12}{section*.17}%
+\contentsline {section}{Problem 4 (2 points)}{16}{section*.32}%
 \contentsfinish 

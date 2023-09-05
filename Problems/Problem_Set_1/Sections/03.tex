@@ -25,7 +25,7 @@ A system is causal if the output at any time \( n \) depends only on the present
 
 \subsubsection*{Linearity}
 
-\textbf{Additivity}: If we have two signals $x_1[n]$ and $x_2[n]$. The systemresponse of $x_1[n]+x_2[n]$ would be:
+\textbf{Additivity}: If we have two signals $x_1[n]$ and $x_2[n]$. The system response of $x_1[n]+x_2[n]$ would be:
 \begin{align}
     y[n] &= (x_{1}[n] + x_{2}[n]) - (x_{1}[n-1] + x_{2}[n-1])^{2} \\
     &= x_{1}[n] + x_{2}[n] - (x_{1}^{2}[n-1] + 2 x_{1}[n-1] x_{2}[n-1] + x_{2}^{2}[n-1])
@@ -37,7 +37,7 @@ Therefore This system is not linear
 
 \subsubsection*{Time-Invariance}
 
-If we consider an input $x[n-k]$, the systemresponse would be:
+If we consider an input $x[n-k]$, the system response would be:
 
 \begin{equation*}
     y[n]=x[n-k]-(x[n-k-1])^2
@@ -60,13 +60,14 @@ In this system, the outpyt $y[n]$ at any time demepds on the current $x[n]$ and 
 
 \begin{itemize}
     \item \textbf{Linearity}, two signals $x_1[n]$ and $x_2[n]$:
-    \subitem \begin{equation*} y[n] &= nx_{1}[n] + nx_{2}[n] + 2x_{1}[n-2] + 2x_{2}[n-2])\\
+    \subitem \begin{equation*} y[n] = nx_{1}[n] + nx_{2}[n] + 2x_{1}[n-2] + 2x_{2}[n-2]
           \end{equation*}
-     This is equal to $y_1[n]+y_2[n]$ where $y_1[n]=nx_1[n]-2x_1[n-1]$ and $y_2[n]=nx_2[n]-2x_2[n-1]$
+     This is equal to $y_1[n]+y_2[n]$ where $y_1[n]=nx_1[n]+2x_1[n-2]$ and $y_2[n]=nx_2[n]+2x_2[n-2]$
 
     \item \textbf{Time-Invariance}, consider an input $x[n-k]$
     \subitem \begin{equation*} y[n]= nx[n-k]-2x[n-k-2] \end{equation*}
-    \subitem this is not the same as $y[n]$ shifted by $k$ samples.
+    This is not the same as $y[n]$ shifted by $k$ samples as it would be:
+    \subitem \begin{equation*} y[n-k]=(n-k)\cdot x[n-k]+2 \cdot x[n-k-2] \end{equation*}
     \item \textbf{Causality}: The same as before, the output depends of a past input $x[n-2]$
 \end{itemize}
 
@@ -82,40 +83,40 @@ In this system, the outpyt $y[n]$ at any time demepds on the current $x[n]$ and 
 
 \begin{itemize}
     \item \textbf{Linearity}, two signals $x_1[n]$ and $x_2[n]$:
-    \subitem \begin{equation*} y[n] &= nx_{1}[n] + nx_{2}[n] + 2x_{1}[n-2] + 2x_{2}[n-2])\\
-          \end{equation*}
-     This is equal to $y_1[n]+y_2[n]$ where $y_1[n]=nx_1[n]-2x_1[n-1]$ and $y_2[n]=nx_2[n]-2x_2[n-1]$
-
+    \subitem \begin{equation*} y[n] = x_{1}[n] + x_{2}[n] - x_{1}[n-1] - x_{2}[n-1] \end{equation*}
+     This is equal to $y_1[n]+y_2[n]$ where $y_1[n]=x_1[n]-x_1[n-1]$ and $y_2[n]=x_2[n]-x_2[n-1]$
     \item \textbf{Time-Invariance}, consider an input $x[n-k]$
-    \subitem \begin{equation*} y[n]= nx[n-k]-2x[n-k-2] \end{equation*}
-    \subitem this is not the same as $y[n]$ shifted by $k$ samples.
-    \item \textbf{Causality}: The same as before, the output depends of a past input $x[n-2]$
+    \subitem \begin{equation*} y[n]= x[n-k]-x[n-k-1] \end{equation*}
+    This is the same as $y[n]$ shifted by $k$ samples as it would be:
+    \subitem \begin{equation*} y[n-k]=x[n-k]- x[n-k-1] \end{equation*}
+
+    \item \textbf{Causality}: The same as before, the output depends of a past input $x[n-1]$
 \end{itemize}
 
 \subsubsection*{Summary}
 \begin{itemize}
     \item The system is linear.
-    \item The system is not time-invariant.
+    \item The system is time-invariant.
     \item The system is causal.
 \end{itemize}
 
-\subsection*{(d) $y[n]=nx[n]+2x[n-2]$}
+\subsection*{(d) $y[n]=x[n]+3x[n+4]$}
 
 \begin{itemize}
     \item \textbf{Linearity}, two signals $x_1[n]$ and $x_2[n]$:
-    \subitem \begin{equation*} y[n] &= nx_{1}[n] + nx_{2}[n] + 2x_{1}[n-2] + 2x_{2}[n-2])\\
+    \subitem \begin{equation*} y[n] = x_{1}[n] + x_{2}[n] + 3x_{1}[n+4] + 3x_{2}[n+4])\\
           \end{equation*}
-     This is equal to $y_1[n]+y_2[n]$ where $y_1[n]=nx_1[n]-2x_1[n-1]$ and $y_2[n]=nx_2[n]-2x_2[n-1]$
+     This is equal to $y_1[n]+y_2[n]$ where $y_1[n]=x_1[n]+3x_1[n+4]$ and $y_2[n]=x_2[n]+3x_2[n+4]$
 
     \item \textbf{Time-Invariance}, consider an input $x[n-k]$
-    \subitem \begin{equation*} y[n]= nx[n-k]-2x[n-k-2] \end{equation*}
-    \subitem this is not the same as $y[n]$ shifted by $k$ samples.
-    \item \textbf{Causality}: The same as before, the output depends of a past input $x[n-2]$
+    \subitem \begin{equation*} y[n]= x[n-k]+3x[n-k+4] \end{equation*}
+    \subitem this is the same as $y[n]$ shifted by $k$ samples.
+    \item \textbf{Causality}: The system is not casual because the output at time $n$ depends on a future input $x[n+4]$.
 \end{itemize}
 
 \subsubsection*{Summary}
 \begin{itemize}
     \item The system is linear.
-    \item The system is not time-invariant.
-    \item The system is causal.
+    \item The system is time-invariant.
+    \item The system is not causal.
 \end{itemize}
