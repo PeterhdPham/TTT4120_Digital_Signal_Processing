@@ -99,9 +99,17 @@
 
 % Images
 
-\newcommand{\importimage}[1]{\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.7 \textwidth]{../figures/#1.png}
-    % \caption{}
-    \label{fig:#1}
-\end{figure}}
+\newcommand{\importimage}[1]{
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.7 \textwidth]{../figures/#1.png}
+        \label{fig:#1}
+    \end{figure}}
+
+\newcommand{\importimagewcaption}[2]{
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.7 \textwidth]{../figures/#1.png}
+        \caption*{#2}
+        \label{fig:#1}
+    \end{figure}}
