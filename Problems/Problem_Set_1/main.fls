@@ -2150,6 +2150,14 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/ntx-Regular-tlf-t1.tf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/ntx-Regular-tlf-t1.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/public/newtx/ntxexx.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/txexs.tfm
+INPUT ./Sections//./4d.png
+INPUT ./Sections//./4d.png
+INPUT ./Sections//./4d.png
+INPUT ./Sections//./4d.png
+INPUT ./Sections//./4d.png
+INPUT /usr/share/texlive/texmf-dist/fonts/vf/public/newtx/ntxsy.vf
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/txsys.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/newtx/txex-bar.tfm
 INPUT main.aux
 INPUT ./main.out
 INPUT ./main.out

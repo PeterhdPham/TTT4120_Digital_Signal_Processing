@@ -36,4 +36,20 @@ A system is bounded-input bounded-output stable (BIBO) if
 
 The first system is an FIR system and has finite coefficients, therefore the system wil produce a bounded output for any bounded input.
 
-The second system is a IIr system
+The second system is a IIR system, therefore its stability is determined by the roots of the characteristic equation assosiated with the system,We can find that by setting $x[n]=0$ and solving the resulting homogenous equation. In this case it would be:
+
+\begin{equation*}
+    y_2[n]+0.9y_2[n-1]=0
+\end{equation*}
+
+The roots of this equation would be determined by the charasteristic polymial:
+
+\begin{equation*}
+    1+0.9x^{-1}=0
+\end{equation*}
+
+This gives us that the  root would be $z=-\frac{1}{0.1}=-1.11111$. Since the magnitude is greater than 1, this system is stable.
+
+\subsection*{(d) Represent the filters graphically by a filter structure.}
+
+\importimagewcaption{4d}{(a):FIR, (b):IIR}
