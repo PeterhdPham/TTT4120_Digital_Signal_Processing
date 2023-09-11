@@ -14,7 +14,7 @@ def y_n(n):
     else:
         return 0
     
-n_values = np.arange(-5, 10)  # A range of n values
+n_values = np.arange(-5, 10)  
 x_values = [x_n(n) for n in n_values]
 y_values = [y_n(n) for n in n_values]
 plt.figure()
@@ -35,7 +35,6 @@ problem_1a()
 # (b) Sketch x[n-k] for k=3 and k=-3
 def problem_1b1():
     plt.stem(n_values-3, x_values, label="x[n]")
-    plt.stem(n_values, y_values, label="y[n]", markerfmt='ro')
     plt.xlabel('n')
     plt.ylabel('Amplitude')
     plt.legend()
@@ -45,7 +44,6 @@ def problem_1b1():
 problem_1b1()
 def problem_1b2():
     plt.stem(n_values+3, x_values, label="x[n]")
-    plt.stem(n_values, y_values, label="y[n]", markerfmt='ro')
     plt.xlabel('n')
     plt.ylabel('Amplitude')
     plt.legend()
@@ -57,7 +55,6 @@ problem_1b2()
 # (c) Sketch x[-n]
 def problem_1c():
     plt.stem(-1*n_values, x_values, label="x[n]")
-    plt.stem(n_values, y_values, label="y[n]", markerfmt='ro')
     plt.xlabel('n')
     plt.ylabel('Amplitude')
     plt.legend()
@@ -69,7 +66,6 @@ problem_1c()
 # (d) Sketch x[5-n]
 def problem_1d():
     plt.stem(-1*n_values+5, x_values, label="x[n]")
-    plt.stem(n_values, y_values, label="y[n]", markerfmt='ro')
     plt.xlabel('n')
     plt.ylabel('Amplitude')
     plt.legend()
@@ -84,7 +80,7 @@ def problem_1e():
         return x_n(n)*y_n(n)
     xy_values = [x_n_y_n(n) for n in n_values]
 
-    plt.stem(n_values, xy_values, label="x[n]")
+    plt.stem(n_values, xy_values, label="x[n]*y[n]")
     plt.xlabel('n')
     plt.ylabel('Amplitude')
     plt.legend()
