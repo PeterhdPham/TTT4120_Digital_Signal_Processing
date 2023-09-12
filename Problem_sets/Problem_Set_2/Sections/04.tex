@@ -1,0 +1,55 @@
+\section{Problem 4 (2 points)}
+
+\begin{align*}
+    y[n]&=x[n]+2 x[n-1]+x[n-2] \\y[n]&=-0.9 y[n-1]+x[n] .
+\end{align*}
+
+\subsection*{(a)Find the unit pulse responses $h_1[n]$ and $h_2[n]$ of the systems.}
+
+The unit pulse response $h[n]$ of a system is the output whenever ethe input is a unit pulse $\delta[n]$, which is 1 at n=0 and 0 everywhere else.
+
+\begin{equation*}
+    \delta[n] = 
+    \begin{cases} 
+        1, & \text{if } n = 0 \\
+        0, & \text{otherwise}
+    \end{cases}
+\end{equation*}
+
+by substituting $x[n]$ with $\delta[n]$ we get:
+
+\begin{align*}
+    h_1[n]&=\delta[n]+2 \delta[n-1]+\delta[n-2] \\h_2[n]&=-0.9 h_2[n-1]+\delta[n] .
+\end{align*}
+
+\subsection*{(b) State whether each system is FIR or IIR. Justify your answer.}
+
+The first system unit pulse response will eventually become zero as the impulse response only depends on the current and past inputs, therefore it is a FIR system. The second system on the other hand will have a unit pulse system that continues indefinitly as the you have to consider the previous outputs $y_2[n-1]$ to find the impulse response $h_2[n]$. This means that this system is IIR.
+
+\subsection*{(c) Determine whether each system is stable.}
+
+A system is bounded-input bounded-output stable (BIBO) if
+
+\begin{equation*}
+    |x[n]| \leq M_{x}<\infty \Rightarrow|y[n]| \leq M_{y}<\infty \Rightarrow, \forall n
+\end{equation*}
+
+The first system is an FIR system and has finite coefficients, therefore the system wil produce a bounded output for any bounded input.
+
+The second system is a IIR system, therefore its stability is determined by the roots of the characteristic equation assosiated with the system,We can find that by setting $x[n]=0$ and solving the resulting homogenous equation. In this case it would be:
+
+\begin{equation*}
+    y_2[n]+0.9y_2[n-1]=0
+\end{equation*}
+
+The roots of this equation would be determined by the charasteristic polymial:
+
+\begin{equation*}
+    1+0.9x^{-1}=0
+\end{equation*}
+
+This gives us that the  root would be $z=-\frac{1}{0.1}=-1.11111$. Since the magnitude is greater than 1, this system is stable.
+
+\subsection*{(d) Represent the filters graphically by a filter structure.}
+
+\importimagewcaption{4d}{(a):FIR, (b):IIR}

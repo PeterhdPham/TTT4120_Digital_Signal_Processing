@@ -1,0 +1,122 @@
+\section{Problem 3 (2 points)}
+I will write a bit more on problem (3(a)) for future usage, the rest will use the same methods only shorter.
+\subsubsection*{Linearity}
+To decide whenever a system is linear or not we have to check if the principle of superposition is satisfied.
+
+\textbf{Additivity}: \( T(x_1[n] + x_2[n]) = T(x_1[n]) + T(x_2[n]) \)
+
+\subsubsection*{Time-Invariance}
+
+A system is time-invariant if a time shift in the input signal results in an identical time shift in the output signal. Mathematically, this property can be expressed as:
+\begin{equation}
+     T(x[n - k]) = y[n - k] 
+\end{equation}
+
+
+where \( T(x[n]) = y[n] \).
+
+\subsubsection*{Causality}
+
+A system is causal if the output at any time \( n \) depends only on the present and past input values but not on future input values. Mathematically, this can be expressed as:
+
+\[ y[n] = T(x[n], x[n-1], x[n-2], \ldots) \]
+
+\subsection*{(a) $y[n]=x[n]-x^2[n-1]$}
+
+\subsubsection*{Linearity}
+
+\textbf{Additivity}: If we have two signals $x_1[n]$ and $x_2[n]$. The system response of $x_1[n]+x_2[n]$ would be:
+\begin{align}
+    y[n] &= (x_{1}[n] + x_{2}[n]) - (x_{1}[n-1] + x_{2}[n-1])^{2} \\
+    &= x_{1}[n] + x_{2}[n] - (x_{1}^{2}[n-1] + 2 x_{1}[n-1] x_{2}[n-1] + x_{2}^{2}[n-1])
+\end{align}
+    
+This is not equal to $y_1[n]+y_2[n]$ where $y_1[n]=x_1[n]-x_1^2[n-1]$ and $y_2[n]=x_2[n]-x_2^2[n-1]$
+
+Therefore This system is not linear
+
+\subsubsection*{Time-Invariance}
+
+If we consider an input $x[n-k]$, the system response would be:
+
+\begin{equation*}
+    y[n]=x[n-k]-(x[n-k-1])^2
+\end{equation*}
+
+This is exactly the output $y[n]$ shifted by $k$ samples, assuming $T(x[n])=y[n]$
+
+\subsubsection*{Causality}
+
+In this system, the outpyt $y[n]$ at any time demepds on the current $x[n]$ and the past input $x[n-1]$, this means that the system is causal.
+
+\subsubsection*{Summary}
+\begin{itemize}
+    \item The system is not linear.
+    \item The system is time-invariant.
+    \item The system is causal.
+\end{itemize}
+
+\subsection*{(b) $y[n]=nx[n]+2x[n-2]$}
+
+\begin{itemize}
+    \item \textbf{Linearity}, two signals $x_1[n]$ and $x_2[n]$:
+    \subitem \begin{equation*} y[n] = nx_{1}[n] + nx_{2}[n] + 2x_{1}[n-2] + 2x_{2}[n-2]
+          \end{equation*}
+     This is equal to $y_1[n]+y_2[n]$ where $y_1[n]=nx_1[n]+2x_1[n-2]$ and $y_2[n]=nx_2[n]+2x_2[n-2]$
+
+    \item \textbf{Time-Invariance}, consider an input $x[n-k]$
+    \subitem \begin{equation*} y[n]= nx[n-k]-2x[n-k-2] \end{equation*}
+    This is not the same as $y[n]$ shifted by $k$ samples as it would be:
+    \subitem \begin{equation*} y[n-k]=(n-k)\cdot x[n-k]+2 \cdot x[n-k-2] \end{equation*}
+    \item \textbf{Causality}: The same as before, the output depends of a past input $x[n-2]$
+\end{itemize}
+
+\subsubsection*{Summary}
+\begin{itemize}
+    \item The system is linear.
+    \item The system is not time-invariant.
+    \item The system is causal.
+\end{itemize}
+
+
+\subsection*{(c) $y[n]=x[n]-x[n-1]$}
+
+\begin{itemize}
+    \item \textbf{Linearity}, two signals $x_1[n]$ and $x_2[n]$:
+    \subitem \begin{equation*} y[n] = x_{1}[n] + x_{2}[n] - x_{1}[n-1] - x_{2}[n-1] \end{equation*}
+     This is equal to $y_1[n]+y_2[n]$ where $y_1[n]=x_1[n]-x_1[n-1]$ and $y_2[n]=x_2[n]-x_2[n-1]$
+    \item \textbf{Time-Invariance}, consider an input $x[n-k]$
+    \subitem \begin{equation*} y[n]= x[n-k]-x[n-k-1] \end{equation*}
+    This is the same as $y[n]$ shifted by $k$ samples as it would be:
+    \subitem \begin{equation*} y[n-k]=x[n-k]- x[n-k-1] \end{equation*}
+
+    \item \textbf{Causality}: The same as before, the output depends of a past input $x[n-1]$
+\end{itemize}
+
+\subsubsection*{Summary}
+\begin{itemize}
+    \item The system is linear.
+    \item The system is time-invariant.
+    \item The system is causal.
+\end{itemize}
+
+\subsection*{(d) $y[n]=x[n]+3x[n+4]$}
+
+\begin{itemize}
+    \item \textbf{Linearity}, two signals $x_1[n]$ and $x_2[n]$:
+    \subitem \begin{equation*} y[n] = x_{1}[n] + x_{2}[n] + 3x_{1}[n+4] + 3x_{2}[n+4])\\
+          \end{equation*}
+     This is equal to $y_1[n]+y_2[n]$ where $y_1[n]=x_1[n]+3x_1[n+4]$ and $y_2[n]=x_2[n]+3x_2[n+4]$
+
+    \item \textbf{Time-Invariance}, consider an input $x[n-k]$
+    \subitem \begin{equation*} y[n]= x[n-k]+3x[n-k+4] \end{equation*}
+    \subitem this is the same as $y[n]$ shifted by $k$ samples.
+    \item \textbf{Causality}: The system is not casual because the output at time $n$ depends on a future input $x[n+4]$.
+\end{itemize}
+
+\subsubsection*{Summary}
+\begin{itemize}
+    \item The system is linear.
+    \item The system is time-invariant.
+    \item The system is not causal.
+\end{itemize}

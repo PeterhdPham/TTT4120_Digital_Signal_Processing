@@ -1,0 +1,27 @@
+\section{Problem 2 (2 points)}
+
+\subsection*{(a) Which physical frequencies $F_1$ can $f_1$ correspond to if $F_s = 6000Hz$?}
+As the sampling frequency need to be twice as high as the frequency after sampling we get from the equation:
+
+\begin{equation*}
+    -\frac{F_s}{2}\leq f \leq \frac{F_s}{2}
+\end{equation*}
+
+this gives us:
+
+\begin{equation*}
+    -3000Hz\leq f \leq 3000Hz
+\end{equation*}
+
+
+\subsection*{(b)  Use Matlab or Python to generate a sequence of length 4 seconds of $x[n]$.}
+\importimagewcaption{2b}{Generated sequence of lenght 4 seconds of $x[n]$ where $A=1$, $f_1=$, $F_s = 6000Hz$ and $T=4s$}
+
+\subsection*{(c)  Use the Matlab command soundsc or the Python command sounddevice.play to listen to the harmonic when the normalized frequency $f_1 = 0.3 $and the sampling rate $F_s$ is given by respectively 1000Hz, 3000Hz and 12000Hz.
+Comment on what you hear.}
+
+When listening to a higher normalized frequencies the pitch did also sound higher.
+
+\subsection*{(d) Now assume a fixed sampling rate $F_s = 8000Hz$ while the physical frequency $F_1$ is respectively 1000Hz, 3000Hz and 6000Hz. Comment on what you hear. Relate it to the corresponding normalized frequency $f_1$.}
+
+In this case the pitch was diffrent where the highest pitch was 3000 Hz, but then i have difficulty deciding whenever if 1000Hz og 6000Hz are the highest pitch. When i played the tones again with the corresponding normalized frequency $f_1$ the pitch sounded accordingly to the frequencies 6000Hz being the highest and 1000Hz being the lowest.
