@@ -1,37 +1,61 @@
-\section{Problem 1 (2 points)}
+\section{Problem 1 (3 points)}
+Two signals $x[n]$ and $y[n]$ are given by
 
-\subsection*{(a) Sketch \( x[n] \) and \( y[n] \)}
+
+\begin{equation*}
+    x[n]=\left\{\begin{array}{ll}2 & n=0 \\ 1 & n= \pm 1 \\ 0 & \text { otherwise, }\end{array} \quad y[n]=\left\{\begin{array}{ll}1 & -M \leq n \leq M \\ 0 & \text { otherwise }\end{array}\right.\right. 
+\end{equation*}
+
+\subsection*{(a) Show that the Fourier transform of $x[n]$ is given by... and sketch it for $\omega \in [-\pi , \pi]$.}
+
+\begin{equation*}
+    X(\omega)=2+2 \cos{\omega}
+\end{equation*}
+
+We have that
+
+\begin{equation*}
+    X(\omega)=\sum_{n=-\infty}^\infty x[n]e^{-j\omega n}
+\end{equation*}
+
+In our case we can write
+
+\begin{equation*}
+    X(\omega)=\sum_{n=-1}^1 x[n]e^{-j\omega n} = -e^{j\omega}+ 2 + e^{-j\omega}
+\end{equation*}
+
+From Euler's formula we get that
+
+\begin{equation*}
+    \cos{x} = \frac{e^{ix}+e^{-ix}}{2}
+\end{equation*}
+
+by combining these two we get:
+
+\begin{equation*}
+    X(\omega)=2+2 \cos{\omega}
+\end{equation*}
+
 \importimage{1a}
 
-\subsection*{(b) Sketch \( x[n-k] \) for \( k=3 \) and \( k=-3 \).}
-\importimage{1b1}
-\importimage{1b2}
-
-\subsection*{(c) Sketch \( x[-n] \).}
-\importimage{1c}
-
-\subsection*{(d) Sketch \( x[5-n] \).}
-\importimage{1d}
-
-\subsection*{(e) Sketch \( x[n] \cdot y[n] \).}
-\importimage{1e}
-
-\subsection*{(f) Express the signal \( x[n] \) by using the unit sample sequence \( \delta[n] \).}
+\subsection*{(b) Show that the Fourier transform of y[n] is given by}
 
 \begin{equation*}
-    x[n] = 5\delta[n] + 4\delta[n-1] + 3\delta[n-2] + 2\delta[n-3] + 1\delta[n-4]
+    Y(\omega)=\frac{\sin \left(\omega\left(M+\frac{1}{2}\right)\right)}{\sin \left(\frac{\omega}{2}\right)} 
 \end{equation*}
 
-
-\subsection*{(g) Express the signal \( y[n] \) by using the unit step signal \( u[n] \).}
+\textbf{and sketch it for $M=10$ and $\omega \in [-\pi,\pi]$}
 
 \begin{equation*}
-    y[n] = u[n-2] - u[n-5]
+    Y(\omega)=\sum_{n=-M}^M e^{-j\omega n}
 \end{equation*}
 
+This is a finite geometric series. By using the general formula for a geometric series
+\begin{equation*}
+    \sum_{k=m}^{n} a r^{k}=\left\{\begin{array}{ll}a(n-m+1) & \text { if } r=1 \\ \frac{a\left(r^{m}-r^{n+1}\right)}{1-r} & \text { if } r \neq 1\end{array}\right. 
+\end{equation*}
 
-\subsection*{(h) Compute the energy of the signal \( x[n] \).}
-The energy og the signal $x[n] =  55$ Solved in python
-
-\subsection*{Python Code}
-
+we get
+\begin{equation*}
+    Y(\omega)=\frac{e^{j\omega M}-e^{-j\omega (M+1)}}{1-e^{-j\omega}}
+\end{equation*}
