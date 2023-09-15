@@ -28,94 +28,88 @@ X_values = [X_omega(om) for om in omega]
 
 # Problem 1
 
-# a: Plotting
-plt.figure()
-plt.subplot(2, 1, 1)
-plt.stem(n_values, x_values)
-plt.xlabel('n')
-plt.ylabel('x[n]')
-plt.title('x[n]')
-plt.grid(True)
+# a)
+def problem1a():
+    plt.figure()
+    plt.subplot(2, 1, 1)
+    plt.stem(n_values, x_values)
+    plt.xlabel('n')
+    plt.ylabel('x[n]')
+    plt.title('x[n]')
+    plt.grid(True)
 
-plt.subplot(2, 1, 2)
-plt.plot(omega, X_values)
-plt.xlabel('omega')
-plt.ylabel('X(omega)')
-plt.title('X(omega)')
-plt.grid(True)
+    plt.subplot(2, 1, 2)
+    plt.plot(omega, X_values)
+    plt.xlabel('omega')
+    plt.ylabel('X(omega)')
+    plt.title('X(omega)')
+    plt.grid(True)
 
-plt.tight_layout()
-plt.show()
+    plt.tight_layout()
+    plt.show()
+# problem1a()
+# b)
 
+def Y_omega(omega, M):
+    return (np.sin(omega*(M+(1/2)))/np.sin(omega/2))
+def problem1b():
+    plt.figure()
+    plt.subplot(2, 1, 1)
+    plt.stem(n_values, y_values)
+    plt.xlabel('n')
+    plt.ylabel('y[n]')
+    plt.title('y[n]')
+    plt.grid(True)
+    M=10
+    Y_values = [Y_omega(om, M) for om in omega]
+    plt.subplot(2, 1, 2)
+    plt.plot(omega, Y_values)
+    plt.xlabel('omega')
+    plt.ylabel('Y(omega)')
+    plt.title('Y(omega)')
+    plt.grid(True)
 
-# (b) Sketch x[n-k] for k=3 and k=-3
-# def problem_1b1():
-#     plt.stem(n_values-3, x_values, label="x[n]")
-#     plt.xlabel('n')
-#     plt.ylabel('Amplitude')
-#     plt.legend()
-#     plt.title('Problem 1b')
-#     plt.grid(True)
-#     plt.show() 
-# problem_1b1()
-# def problem_1b2():
-#     plt.stem(n_values+3, x_values, label="x[n]")
-#     plt.xlabel('n')
-#     plt.ylabel('Amplitude')
-#     plt.legend()
-#     plt.title('Problem 1b')
-#     plt.grid(True)
-#     plt.show()
-# problem_1b2()
+    plt.tight_layout()
+    plt.show()
+# problem1b()
 
-# # (c) Sketch x[-n]
-# def problem_1c():
-#     plt.stem(-1*n_values, x_values, label="x[n]")
-#     plt.xlabel('n')
-#     plt.ylabel('Amplitude')
-#     plt.legend()
-#     plt.title('Problem 1c')
-#     plt.grid(True)
-#     plt.show()
-# problem_1c()
+def z_n(n, N):
+    n_mod = n % N
+    if n_mod == 0:
+        return 2
+    elif n_mod == 1 or n_mod == N-1:
+        return 1
+    else:
+        return 0
 
-# # (d) Sketch x[5-n]
-# def problem_1d():
-#     plt.stem(-1*n_values+5, x_values, label="x[n]")
-#     plt.xlabel('n')
-#     plt.ylabel('Amplitude')
-#     plt.legend()
-#     plt.title('Problem 1d')
-#     plt.grid(True)
-#     plt.show()
-# problem_1d()
+def c_k(k, N):
+    return 2/N * (1 + np.cos(2 * np.pi * k / N))
 
-# # (e) Sketch x[n] * y[n]
-# def problem_1e():
-#     def x_n_y_n(n):
-#         return x_n(n)*y_n(n)
-#     xy_values = [x_n_y_n(n) for n in n_values]
-
-#     plt.stem(n_values, xy_values, label="x[n]*y[n]")
-#     plt.xlabel('n')
-#     plt.ylabel('Amplitude')
-#     plt.legend()
-#     plt.title('Problem 1e')
-#     plt.grid(True)
-#     plt.show()
-# problem_1e()
-
-
-
-# # (h) Compute the energy of the signal x[n]
-
-# def problem_1h():
-#     e=0 
-#     for n in n_values:
-#         e+=x_n(n)*x_n(n)
+def problem1d():
+    N = 10
+    n_values = np.arange(-30, 30)  # For example, from -30 to 30
+    z_values = [z_n(n, N) for n in n_values]
     
-#     print("The energy og the signal x[n] = ",e)
-# problem_1h()
+    plt.figure()
+    plt.subplot(2, 1, 1)
+    plt.stem(n_values, z_values)
+    plt.xlabel('n')
+    plt.ylabel('z[n]')
+    plt.title('z[n]')
+    plt.grid(True)
+    
+    k_values = np.arange(-5, 6)  # From -N/2 to N/2
+    omega_values = 2 * np.pi * k_values / N  # omega = 2*pi*k/N
+    ck_values = [c_k(k, N) for k in k_values]
+    
+    plt.subplot(2, 1, 2)
+    plt.stem(omega_values, ck_values)
+    plt.xlabel('omega')
+    plt.ylabel('c_k')
+    plt.title('Fourier Coefficients c_k')
+    plt.grid(True)
 
-# # Energy = sum of (x[n])^2 for all n
+    plt.tight_layout()
+    plt.show()
 
+problem1d()

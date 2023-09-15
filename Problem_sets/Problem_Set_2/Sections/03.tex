@@ -1,1 +1,97 @@
-\section{Problem 3 (2 points)}
+\section{Problem 3 (3 points)}
+\textbf{Two systems (from Problem Set 1) are given by the following difference
+equations}
+
+\begin{equation*}
+    \begin{array}{l}y[n]=x[n]+2 x[n-1]+x[n-2] \\ y[n]=-0.9 y[n-1]+x[n] .\end{array} 
+\end{equation*}
+
+\subsection*{(a) Find the frequency responses of these two systems.}
+
+To find the frequency response \( H(\omega) \) of a system described by a difference equation, you can take the Fourier Transform of both sides of the equation and solve for \( H(\omega) \), which is essentially \( \frac{Y(\omega)}{X(\omega)} \).
+
+\subsubsection*{For the first system:}
+
+The difference equation is:
+\begin{equation*}
+y[n] = x[n] + 2x[n-1] + x[n-2]
+\end{equation*}
+Taking the Fourier Transform of both sides:
+\begin{equation*}
+Y(\omega) = X(\omega) + 2e^{-j\omega}X(\omega) + e^{-2j\omega}X(\omega)
+\end{equation*}
+Simplifying:
+\begin{equation*}
+Y(\omega) = X(\omega)(1 + 2e^{-j\omega} + e^{-2j\omega})
+\end{equation*}
+The frequency response \( H_1(\omega) \) is:
+\begin{equation*}
+H_1(\omega) = \frac{Y(\omega)}{X(\omega)} = 1 + 2e^{-j\omega} + e^{-2j\omega}
+\end{equation*}
+
+\subsubsection*{For the second system:}
+
+The difference equation is:
+\begin{equation*}
+y[n] = -0.9y[n-1] + x[n]
+\end{equation*}
+Taking the Fourier Transform of both sides:
+\begin{equation*}
+Y(\omega) = -0.9e^{-j\omega}Y(\omega) + X(\omega)
+\end{equation*}
+Solving for \( Y(\omega) \):
+\begin{equation*}
+Y(\omega) = \frac{X(\omega)}{1 + 0.9e^{-j\omega}}
+\end{equation*}
+The frequency response \( H_2(\omega) \) is:
+\begin{equation*}
+H_2(\omega) = \frac{Y(\omega)}{X(\omega)} = \frac{1}{1 + 0.9e^{-j\omega}}
+\end{equation*}
+
+\subsection*{Find the magnitude and phase responses of the two systems. Are they
+even or odd functions?}
+
+To find the magnitude and phase of a frequency response $H(\omega)$, we can express $H(\omega)$ in polar form: $H(\omega)=|H(\omega)|e^{j\angle H(\omega)}$ where $|H(\omega)|$ is the magnitude and $\angle H(\omega)$ is the phase.
+
+\subsubsection{System 1}
+
+The difference equation is \( y[n] = x[n] + 2x[n-1] + x[n-2] \).
+
+The Fourier Transform of the system, known as the frequency response \( H_1(\omega) \), is given by:
+\[
+H_1(\omega) = 1 + 2e^{-j\omega} + e^{-2j\omega}
+\]
+To find the magnitude \( |H_1(\omega)| \):
+\[
+\begin{aligned}
+|H_1(\omega)| &= \sqrt{\text{Re}[H_1(\omega)]^2 + \text{Im}[H_1(\omega)]^2} \\
+&= \sqrt{(1 + 2\cos(\omega) + \cos(2\omega))^2} \\
+&= \sqrt{2 + 4\cos(\omega) + 4\cos^2(\omega) + 2\cos(2\omega)} \\
+&= \sqrt{2(1 + 2\cos(\omega) + 2\cos^2(\omega) + \cos(2\omega))}
+\end{aligned}
+\]
+To find the phase \( \angle H_1(\omega) \):
+\[
+\angle H_1(\omega) = 0
+\]
+
+\subsubsection{System 2}
+
+The difference equation is \( y[n] = -0.9y[n-1] + x[n] \).
+
+The frequency response \( H_2(\omega) \) is:
+\[
+H_2(\omega) = \frac{1}{1 + 0.9e^{-j\omega}}
+\]
+To find the magnitude \( |H_2(\omega)| \):
+\[
+\begin{aligned}
+|H_2(\omega)| &= \left| \frac{1}{1 + 0.9(\cos(-\omega) - j\sin(-\omega))} \right| \\
+&= \frac{1}{\sqrt{(1 - 0.9\cos(\omega))^2 + (0.9\sin(\omega))^2}} \\
+&= \frac{1}{\sqrt{1 - 1.8\cos(\omega) + 0.81}}
+\end{aligned}
+\]
+To find the phase \( \angle H_2(\omega) \):
+\[
+\angle H_2(\omega) = -\text{atan2}(0.9 \sin(\omega), 1 - 0.9 \cos(\omega))
+\]

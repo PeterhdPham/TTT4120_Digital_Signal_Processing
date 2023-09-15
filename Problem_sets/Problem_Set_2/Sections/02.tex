@@ -1,1 +1,37 @@
-\section{Problem 2 (2 points)}
+\section{Problem 2 (1.5 points)}
+\textbf{Let $x[n]$ be a signal with the Fourier transform $X(\omega)$. Find the fourier tranforms of the following signals:}
+We have that
+
+\begin{equation*}
+    X(\omega)=\sum_{n=-\infty}^\infty x[n]e^{-j\omega n}
+\end{equation*}
+
+\subsection*{(a) $ x_{1}[n]=x[n+3] $}
+The Fourier Transform of a time-shifted signal $x[n-m]$ is given by:
+\begin{equation*}
+    \mathcal{F}\{x[n-m]\}=e^{-j \omega m} X(\omega)
+\end{equation*}
+\begin{equation*}
+    \Rightarrow X_1(\omega)=e^{-j\omega m}X(\omega)=e^{j3\omega}X(\omega)
+\end{equation*}
+
+\subsection*{(b) $ x_{2}[n]=x[-n] $}
+The Fourier Transform of a time-reversed signal $x[-n]$ is given by:
+\begin{equation*}
+    \mathcal{F}\{x[-n]\}=X(-\omega) 
+\end{equation*}
+
+\begin{equation*}
+    \Rightarrow X_2(\omega)=X(-\omega) 
+\end{equation*}
+
+\subsection*{(c) $ x_{3}[n]=x[3-n] $}
+Here we have both time-shift and time-reversed
+\begin{equation*}
+    X_3(\omega)=e^{-j\omega m}X(\omega)=e^{j3\omega}X(-\omega)
+\end{equation*}
+\subsection*{(d) $ x_{4}[n]=x[n] * x[n] $}
+Covolution in the time domain corresponds to multiplication in the frequency domain
+\begin{equation*}
+    X_4(\omega)=X(\omega)\cdot X(\omega)=X^2(\omega)
+\end{equation*}

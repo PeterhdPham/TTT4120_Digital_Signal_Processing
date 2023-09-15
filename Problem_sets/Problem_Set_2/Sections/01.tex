@@ -59,3 +59,71 @@ we get
 \begin{equation*}
     Y(\omega)=\frac{e^{j\omega M}-e^{-j\omega (M+1)}}{1-e^{-j\omega}}
 \end{equation*}
+
+by multiplying the numerator and the denominator by $e\frac{j\omega}{2}$.
+
+\begin{equation*}
+    \begin{aligned} Y(\omega) & =\frac{e^{j \omega M} e^{j \omega / 2}-e^{-j \omega(M+1)} e^{j \omega / 2}}{\left(1-e^{-j \omega}\right) e^{j \omega / 2}} \\ & =\frac{e^{j \omega\left(M+\frac{1}{2}\right)}-e^{-j \omega\left(M+\frac{1}{2}\right)}}{e^{j \omega / 2}-e^{-j \omega / 2}}\end{aligned}
+\end{equation*}
+
+Since we have expresions of the form $e^{j\Theta}-e^{-j\Theta}$, which can be simplidied using Euler's formula
+
+\begin{equation*}
+    \begin{array}{c}e^{j \theta}=\cos (\theta)+j \sin (\theta) \\ e^{-j \theta}=\cos (-\theta)+j \sin (-\theta)=\cos (\theta)-j \sin (\theta)\end{array} 
+\end{equation*}
+
+Therefore:
+
+\begin{equation*}
+    e^{j\Theta}-e^{-j\Theta}= 2j\sin{\Theta}
+\end{equation*}
+
+By substituing this back into the equation, we get
+
+\begin{equation*}
+    Y(\omega)=\frac{2j\sin \left(\omega\left(M+\frac{1}{2}\right)\right)}{2j\sin \left(\frac{\omega}{2}\right)} 
+\end{equation*}
+
+
+\begin{equation*}
+    Y(\omega)=\frac{\sin \left(\omega\left(M+\frac{1}{2}\right)\right)}{\sin \left(\frac{\omega}{2}\right)} 
+\end{equation*}
+
+\importimage{1b}
+
+\subsection*{(c) Explain why the signals $x[n]$ and $y[n]$ have real valued spectra.}
+
+The signals have a real valued spectra because the sequencences $x[n]$ and $y[n]$ are real and symmetric.
+
+\subsection*{(d) Let the signal}
+
+\begin{equation*}
+    z[n]=\sum_{l=-\infty}^{\infty} x[n-l N] 
+\end{equation*}
+
+\textbf{be the periodic extension of $x[n]$. Assume that N is greater than the length of the signal, i.e. $N > 3$.\\Sketch the signal $z[n]$.\\ Find the Fourier series coefficients $\{c_k\}$ of $z[n]$.\\ Sketch $\{c_k\}$ as a function of $\omega=2\pi \frac{k}{N}\in [-\pi,\pi]$ for $N=10$.}
+
+For a discrete-time periodic signal, the Fourier Series coefficients $\{c_k\}$ can be defined as:
+
+\begin{equation*}
+    c_{k}=\frac{1}{N} \sum_{n=0}^{N-1} z[n] e^{-j(2 \pi k n) / N} 
+\end{equation*}
+
+For $z[n]$, you can see that most terms in this sum will be zero, except for the few terms that correspond to the non-zero values of $x[n]$. Thus:
+
+\begin{equation*}
+    c_{k}=\frac{1}{N}\left(2+e^{-j(2 \pi k) / N}+e^{j(2 \pi k) / N}\right)
+\end{equation*}
+
+Simplifying this using Euler's formula $ e^{j \theta}+e^{-j \theta}=2 \cos (\theta) $, we get:
+
+\begin{equation*}
+    \begin{array}{c}c_{k}=\frac{1}{N}\left(2+2 \cos \left(\frac{2 \pi k}{N}\right)\right) \\c_{k}=\frac{2}{N}\left(1+\cos \left(\frac{2 \pi k}{N}\right)\right)\end{array}
+\end{equation*}
+
+\importimage{1d}
+
+\subsection*{(e) Compare the spectra of $x[n]$ and $z(n)$, i.e. $X(\omega)$ and $\{c_k\}$. What is the
+relationship between the spectra?}
+
+$ X(\omega) $ and $ \left\{c_{k}\right\} $ are essentially two different ways of representing the frequency content of a signal. $ X(\omega) $ is used for the original aperiodic $ x[n] $, while $ \left\{c_{k}\right\} $ is used for the periodic $ z[n] $, which is formed by periodically repeating $ x[n] $.
