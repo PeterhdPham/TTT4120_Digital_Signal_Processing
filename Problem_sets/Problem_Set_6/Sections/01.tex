@@ -1,0 +1,66 @@
+\section{Problem 1: Relationship between DTFT and DFT [3 points]}
+\textbf{Consider the following sequence of length $N_x$,}
+$$
+x(n)= \begin{cases}0.9^n & n=0, \ldots, N_x-1, \\ 0 & \text { otherwise. }\end{cases}
+$$
+\textbf{where $N_x=28$. We would like to analyze the sequence in the frequency domain.}
+\subsection*{(a) Compute the spectrum $X(f)$ of $x(n)$ using the DTFT and plot its magnitude for $f \in[0,1)$.}
+
+We start by using the formula for DTFT
+
+$$X(f)=\sum_{n=-\infty}^{\infty}x(n)e^{-j2\pi fn}$$
+
+given that $N_x=28$ we just need to sum from $n=0$ to $n=27$
+
+$$X(f)=\sum_{n=0}^{27}x(n)e^{-j2\pi fn}$$
+
+using the sum of a finite geometric series
+
+$$S=\frac{a\left(1-r^N_x\right)}{1-r}$$
+
+where $a=1$, $r=ae^{-j2\pi f}$
+
+This gives us
+
+$$X(f)=\frac{1-\left(ae^{-j2\pi f}\right)^{28}}{1-ae^{-j2\pi f}}$$
+
+To find the magnitude we need to take the absolute value of $X(f)$
+$$|X(f)|=|\frac{1-\left(ae^{-j2\pi f}\right)^{28}}{1-ae^{-j2\pi f}}|$$
+
+\importimagewcaption{1a.png}{The magnitude of $X(f)$ for $f \in[0,1)$}
+
+\subsection*{(b) Use the function $\mathrm{fft}$ to compute $X(k)=D F T\{x(n)\}$ with the DFT length equal to $N_x / 4, N_x / 2, N_x$ and $2 N_x$.}
+
+\importimagewcaptionw{1b.png}{Plot of $X(f)$ with the DFT length equal to $N_x / 4, N_x / 2, N_x$ and $2 N_x$.}{0.9}
+
+
+
+\subsection*{(c) What is the relationship between the DFT index $\mathrm{k}$ and the normalized frequency $f$ ? Find $f$ that corresponds to the $k=1$ for the four DFTs computed in (b).}
+
+The relationship between the DFT index $\mathrm{k}$ and the normalized frequency $f$ is given by
+$$f=\frac{k}{N}$$
+For $k=1$ and $N=7$
+
+$$f=\frac{1}{7}$$
+For $k=1$ and $N=14$
+
+$$f=\frac{1}{14}$$
+
+For $k=1$ and $N=28$
+
+$$f=\frac{1}{28}$$
+
+For $k=1$ and $N=56$
+
+$$f=\frac{1}{56}$$
+
+
+\subsection*{(d) Plot the magnitude of each DFT (use stem) together with the magnitude of the DTFT (use plot) as a function of $f$. What is the relationship between DFT and DTFT for the different DFT lengths? Explain the results.}
+
+\importimagewcaptionw{1d.png}{Plot of the magnitude of each DFT together with the magnitude of the DTFT as a function of $f$.}{0.9}
+
+We can se that we get a better representation of the DTFT the larger $N$ gets for DTF.
+
+\subsection*{(e) Why is it sufficient to compute the values of the DTFT and DFT corresponding only to the frequency range $f \in [0, 0.5]$ for any real signal?}
+
+As we can se on the plots from c), the values becomes mirrored (close to at high $N$ for DTF) on both sides of $f=0.5$. ALso for any real signal, there wont be any negative frequences, therefore we dont need to compute the values of DTFT and DFT in the frequency range $f \in [0.5, 1]$ as this will represent the negative frequencies.

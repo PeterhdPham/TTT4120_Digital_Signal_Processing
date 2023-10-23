@@ -8,7 +8,7 @@ equations}
 
 \subsection*{(a) Find the frequency responses of these two systems.}
 
-To find the frequency response \( H(\omega) \) of a system described by a difference equation, you can take the Fourier Transform of both sides of the equation and solve for \( H(\omega) \), which is essentially \( \frac{Y(\omega)}{X(\omega)} \).
+To find the frequency response $ H(\omega) $ of a system described by a difference equation, you can take the Fourier Transform of both sides of the equation and solve for $ H(\omega) $, which is essentially $ \frac{Y(\omega)}{X(\omega)} $.
 
 \subsubsection*{For the first system:}
 
@@ -24,7 +24,7 @@ Simplifying:
 \begin{equation*}
 Y(\omega) = X(\omega)(1 + 2e^{-j\omega} + e^{-2j\omega})
 \end{equation*}
-The frequency response \( H_1(\omega) \) is:
+The frequency response $ H_1(\omega) $ is:
 \begin{equation*}
 H_1(\omega) = \frac{Y(\omega)}{X(\omega)} = 1 + 2e^{-j\omega} + e^{-2j\omega}
 \end{equation*}
@@ -39,11 +39,11 @@ Taking the Fourier Transform of both sides:
 \begin{equation*}
 Y(\omega) = -0.9e^{-j\omega}Y(\omega) + X(\omega)
 \end{equation*}
-Solving for \( Y(\omega) \):
+Solving for $ Y(\omega) $:
 \begin{equation*}
 Y(\omega) = \frac{X(\omega)}{1 + 0.9e^{-j\omega}}
 \end{equation*}
-The frequency response \( H_2(\omega) \) is:
+The frequency response $ H_2(\omega) $ is:
 \begin{equation*}
 H_2(\omega) = \frac{Y(\omega)}{X(\omega)} = \frac{1}{1 + 0.9e^{-j\omega}}
 \end{equation*}
@@ -53,45 +53,121 @@ even or odd functions?}
 
 To find the magnitude and phase of a frequency response $H(\omega)$, we can express $H(\omega)$ in polar form: $H(\omega)=|H(\omega)|e^{j\angle H(\omega)}$ where $|H(\omega)|$ is the magnitude and $\angle H(\omega)$ is the phase.
 
-\subsubsection{System 1}
+\subsubsection*{System 1}
 
-The difference equation is \( y[n] = x[n] + 2x[n-1] + x[n-2] \).
+The difference equation is $ y[n] = x[n] + 2x[n-1] + x[n-2] $.
 
-The Fourier Transform of the system, known as the frequency response \( H_1(\omega) \), is given by:
-\[
+The Fourier Transform of the system, known as the frequency response $ H_1(\omega) $, is given by:
+\begin{equation*}
 H_1(\omega) = 1 + 2e^{-j\omega} + e^{-2j\omega}
-\]
-To find the magnitude \( |H_1(\omega)| \):
-\[
+\end{equation*}
+To find the magnitude $ |H_1(\omega)| $:
+\begin{equation*}
 \begin{aligned}
 |H_1(\omega)| &= \sqrt{\text{Re}[H_1(\omega)]^2 + \text{Im}[H_1(\omega)]^2} \\
 &= \sqrt{(1 + 2\cos(\omega) + \cos(2\omega))^2} \\
 &= \sqrt{2 + 4\cos(\omega) + 4\cos^2(\omega) + 2\cos(2\omega)} \\
 &= \sqrt{2(1 + 2\cos(\omega) + 2\cos^2(\omega) + \cos(2\omega))}
 \end{aligned}
-\]
-To find the phase \( \angle H_1(\omega) \):
-\[
+\end{equation*}
+To find the phase $ \angle H_1(\omega) $:
+\begin{equation*}
 \angle H_1(\omega) = 0
-\]
+\end{equation*}
 
-\subsubsection{System 2}
+To determine whenever the function is even or odd
 
-The difference equation is \( y[n] = -0.9y[n-1] + x[n] \).
+\begin{equation*}
+    H_{1}(-\omega)=1+2 e^{j \omega}+e^{2 j \omega}
+\end{equation*}
 
-The frequency response \( H_2(\omega) \) is:
-\[
+$ H_{1}(\omega) $ and $ H_{1}(-\omega) $ are not equal, nor are $ H_{1}(\omega) $ and $ -H_{1}(-\omega) $- Thus, $ H_{1}(\omega) $ is neither even nor odd.2.
+
+\subsubsection*{System 2}
+
+The difference equation is $ y[n] = -0.9y[n-1] + x[n] $.
+
+The frequency response $ H_2(\omega) $ is:
+\begin{equation*}
 H_2(\omega) = \frac{1}{1 + 0.9e^{-j\omega}}
-\]
-To find the magnitude \( |H_2(\omega)| \):
-\[
+\end{equation*}
+To find the magnitude $ |H_2(\omega)| $:
+\begin{equation*}
 \begin{aligned}
 |H_2(\omega)| &= \left| \frac{1}{1 + 0.9(\cos(-\omega) - j\sin(-\omega))} \right| \\
 &= \frac{1}{\sqrt{(1 - 0.9\cos(\omega))^2 + (0.9\sin(\omega))^2}} \\
 &= \frac{1}{\sqrt{1 - 1.8\cos(\omega) + 0.81}}
 \end{aligned}
-\]
-To find the phase \( \angle H_2(\omega) \):
-\[
+\end{equation*}
+To find the phase $ \angle H_2(\omega) $:
+\begin{equation*}
 \angle H_2(\omega) = -\text{atan2}(0.9 \sin(\omega), 1 - 0.9 \cos(\omega))
-\]
+\end{equation*}
+
+To determine whenever the function is even or odd
+
+\begin{equation*}
+    H_{2}(-\omega)=\frac{1}{1+0.9 e^{j \omega}} 
+\end{equation*}
+ $ H_{2}(\omega) $ and $ H_{2}(-\omega) $ are not equal, nor are $ H_{2}(\omega) $ and $ -H_{2}(-\omega) $- Thus, $ H_{2}(\omega) $ is neither even nor odd.
+
+ \subsection*{(c) Use Python (the functions scipy.signal.freqz, numpy.abs and numpy.angle) to find
+ and plot the magnitude and phase responses of the systems.}
+
+ \importimage{3c1}
+ \importimage{3c2}
+ 
+ \subsection*{(d) Determine whether each system represents a lowpass, bandpass,
+ bandstop or highpass filter. Justify your answers.}
+ From the plots, we can se that system 1 is a lowpass filter, while system 2 is a highpass filter. This is because the amplitude is high at a low frequency at system 1 and opposite at system 2.
+
+ \subsection*{The signal $ x[n]=\frac{1}{2} \cos \left(\frac{\pi}{2} n+\frac{\pi}{4}\right) $ is passed through the two systems. Find the frequency, amplitude and phase of the corresponding output signals.}
+The signal $ x[n]=\frac{1}{2} \cos \left(\frac{\pi}{2} n+\frac{\pi}{4}\right) $ can be represented as
+
+\begin{equation*}
+     x[n]=\frac{1}{2}\left(e^{j\left(\frac{\pi}{4}\right)} e^{j\left(\frac{\pi}{2} n\right)}+e^{-j\left(\frac{\pi}{4}\right)} e^{-j\left(\frac{\pi}{2} n\right)}\right) 
+\end{equation*}
+
+ The Fourier Transform $ X(\omega) $ of $ x[n] $ is:
+
+ \begin{equation*}
+ X(\omega) = \frac{1}{4} \left( e^{j\left(\frac{\pi}{4}\right)} \delta\left(\omega-\frac{\pi}{2}\right) + e^{-j\left(\frac{\pi}{4}\right)} \delta\left(\omega+\frac{\pi}{2}\right) \right)
+ \end{equation*}
+ \subsubsection*{For the first system $ y_1[n] = x[n] + 2x[n-1] + x[n-2] $}
+
+The frequency response $ H_1(\omega) $ is:
+
+\begin{equation*}
+H_1(\omega) = 1 + 2e^{-j\omega} + e^{-j2\omega} = 1 + 2 \cos(\omega) - j2 \sin(\omega) + \cos(2\omega) - j \sin(2\omega)
+\end{equation*}
+
+
+
+Thus, the output $ Y_1(\omega) $ will be:
+
+\begin{equation*}
+Y_1(\omega) = X(\omega) \cdot H_1(\omega)
+\end{equation*}
+
+\begin{equation*}
+    Y_{1}(\omega)=\frac{1}{4}\left(e^{j\left(\frac{\pi}{4}\right)} H_{1}\left(\frac{\pi}{2}\right) \delta\left(\omega-\frac{\pi}{2}\right)+e^{-j\left(\frac{\pi}{4}\right)} H_{1}\left(-\frac{\pi}{2}\right) \delta\left(\omega+\frac{\pi}{2}\right)\right) 
+\end{equation*}
+
+
+\subsubsection*{For the second system $ y_2[n] = -0.9y_2[n-1] + x[n] $}
+
+The frequency response $ H_2(\omega) $ is:
+
+\begin{equation*}
+H_2(\omega) = \frac{1}{1 + 0.9 e^{-j\omega}} = \frac{1}{1 + 0.9 \cos(\omega) - j0.9 \sin(\omega)}
+\end{equation*}
+
+The output $ Y_2(\omega) $ will then be:
+
+\begin{equation*}
+Y_2(\omega) = X(\omega) \cdot H_2(\omega)
+\end{equation*}
+
+\begin{equation*}
+    Y_{2}(\omega)=\frac{1}{4}\left(e^{j\left(\frac{\pi}{4}\right)} H_{2}\left(\frac{\pi}{2}\right) \delta\left(\omega-\frac{\pi}{2}\right)+e^{-j\left(\frac{\pi}{4}\right)} H_{2}\left(-\frac{\pi}{2}\right) \delta\left(\omega+\frac{\pi}{2}\right)\right) 
+\end{equation*}

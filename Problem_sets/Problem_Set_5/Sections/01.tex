@@ -1,0 +1,162 @@
+\section{Problem 1 (4 points)}
+
+\subsection*{(a) Derive the energy density spectrum $S_{x x}(f)$ of the signal}
+$$
+x(n)=\left\{\begin{array}{cc}
+a^n & n \geq 0, \quad|a|<1 \\
+0 & \quad \quad n<0 .
+\end{array}\right.
+$$
+
+To find the energy density spectrum we need to first compute the Discrete Fourier Transform of the signal $x[n]$
+
+$$
+X(e^{j\omega})=\sum_{n=-\infty}^{\infty} x[n]e^{-j\omega n}
+$$
+
+$$
+X(e^{j\omega})=\sum_{n=0}^{\infty} a^ne^{-j\omega n}
+$$
+
+as this is the sum of an infinite geometric series we can use the formula
+
+$$
+S=\sum_{n=0}^{\infty} ar^n=|\frac{a}{1-r}|
+$$
+
+if we rewrite $a^ne^{-j\omega n}$ to $(ae^{-j\omega})^n$ then we get
+
+$$
+X(e^{j\omega})=\frac{1}{1-ae^{-j\omega}}
+$$
+
+AS the energy density spectrum $S_{x x}(f)$ is given by 
+
+$$S_{x x}(f)=\left|X(e^{j\omega})^2\right|$$
+
+we get
+
+\begin{align*}
+    S_{x x}(f)&=\frac{1}{\left(1-ae^{-j\omega}\right)\left(1-ae^{j\omega}\right)}\\
+    &=\frac{1}{1-a\left(e^{-j\omega}+e^{j\omega}\right)a^2e^{-j\omega}e^{j\omega}}
+\end{align*}
+
+
+Using Euler's formula, where $e^{j \omega}=\cos (\omega)+j \sin (\omega)$ and $e^{-j \omega}=\cos (\omega)-j \sin (\omega)$, and the fact that $e^{-j \omega} e^{j \omega}=1$ : 
+
+$$S_{x x}(f)=\frac{1}{1-a2 \cos (2\pi f)+a^2}$$
+
+\subsection*{(b) Derive the autocorrelation $r_{x x}(l)$ of the signal given in 1a. Use $r_{x x}(l)$ to verify the expression for $S_{x x}(f)$ found in 1a.}
+
+The autocorrelation of $x(n)$ is defined as the sequence
+
+$$
+r_{x x}(l)=\sum_{n=-\infty}^{\infty} x(n+l) x(n)
+$$
+
+This gives us 
+$$
+r_{x x}(l)=\sum_{n=0}^{\infty} a^{n+l} a^n
+$$
+
+this can be rewritten as $a^{2n}a^l$, this gives us 
+
+$$
+r_{x x}(l)=\frac{a^l}{1-a^{2}}, 
+$$
+
+as $r_{x x}(l)=r_{x x}(-l)$
+
+$$
+r_{x x}(l)=\frac{a^{|l|}}{1-a^{2}},
+$$
+
+$$
+r_{x x}[l]=x[l] * x[-l] \stackrel{\mathcal{F}}{\leftrightarrow} S_{x x}(\omega)=X(\omega) X^*(\omega)=|X(\omega)|^2
+$$
+
+By taking the Discrete Fourier Transform of the autocorrelation $r_{x x}(l)$ we get 
+
+$$S_{xx}(f)=\sum_{l=-\infty}^{\infty}\frac{a^l}{1-a^{2}}e^{-j\omega l}$$
+
+$$=\sum_{l=-\infty}^{\infty}\frac{a^l}{1-a^{2}}e^{-j\omega l}$$
+
+$$=\frac{1}{1-a^{2}}\sum_{l=-\infty}^{\infty}a^{l}e^{-j\omega l}$$
+
+$$=\frac{1}{1-a^2}\left(\sum_{l=1}^{\infty} a^l e^{j \omega l}+\sum_{l=0}^{\infty} a^l e^{-j \omega l}\right)$$
+$$=\frac{1}{1-a^2}ae^{j\omega l}\left(\sum_{l=0}^{\infty} a^l e^{j \omega l}+\sum_{l=0}^{\infty} a^l e^{-j \omega l}\right)$$
+
+using the formula for infinite geometric series we get
+
+$$S_{xx}(f)=\frac{1}{1-a^2}\left(\frac{a e^{j \omega}}{1-a e^{j \omega}}+\frac{1}{1-a e^{-j \omega}}\right)$$
+
+$$=\frac{1}{1-a^2} \cdot \frac{a e^{j \omega}-a^2+1-a e^{j \omega}}{\left(1-a e^{j \omega}\right)\left(1-a e^{-j \omega}\right)} $$
+$$=\frac{1}{\left(1-a e^{j \omega}\right)\left(1-a e^{-j \omega}\right)} $$
+$$=\frac{1}{1+a^2-2 a \cos \omega}$$
+
+which is the same as in 1b
+
+\subsection*{(c) Plot $x(n), r_{x x}(l)$ and $S_{x x}(f)$ for $a=0.4, a=0.95$, and $a=-0.95$. Let $n \in[0,50], l \in[-50,50]$ and $f \in[-0.5,0.5]$ in your plots.}
+\textbf{Compare the plots for the three different values of $a$. \\ Write down your observations and explain them.
+What properties of the autocorrelation function can you see from the plots?}
+
+\importimagewcaptionw{plot1c.png}{$x(n), r_{x x}(l)$ and $S_{x x}(f)$ for $a=0.4, a=0.95$, and $a=-0.95$.}{1}
+
+In figure \ref{fig:plot1c.png} we can se that for $a>0$ the signal decays exponentialy where the lower the value the mor exponential decay, when $a<0$ we can observe that the signal decays exponentially while oscilating the the same time. When looking at the autocoerrelation we can observe that for a lower magnitude of $|a|$ the less correlation we get at a higher lag. When $a<0$ we can se that the autocorrelation is negative for when $l$ is an odd number and high for an even $l$ this makes sense as the signal is oscilating from positiv to negative for each incrementation in n.
+
+\subsection*{(d) Find the energy of the signal x(n).}
+
+The energy of sequences $x[n]$ is given by
+
+$$
+E_x=\sum_{n=-\infty}^{\infty} x^2[n]=r_x[0] \geq 0
+$$
+
+this gives us
+
+$$
+E_x=r_{xx}[0]=\frac{1}{1-a^{2}}
+$$
+
+
+\subsection*{(e) At this point, the signal $x(n)$ is first passed through the filter $h_1(n)$ and then the result is fed to the filter $h_2(n)$, where the first filter is given in terms of its impulse response and the second one in terms of its frequency response as follows. The final result is denoted by $y(n)$.}
+$$
+\begin{gathered}
+h_1(n)=\delta(n)-a \delta(n-1) \\
+H_2(f)= \begin{cases}\cos (2 \pi f) & |f| \leq \frac{1}{4} \\
+0 & \frac{1}{4}<|f| \leq \frac{1}{2}\end{cases}
+\end{gathered}
+$$
+
+\textbf{Find the energy density spectrum of the output signal, $S_{y y}(f)$. Compare the result to $S_{x x}(f)$ and comment. Find the total energy in the output signal.}
+
+$$S_{yy}(f)=|H(f)|^2S_{xx}(f)$$
+
+the overall transfer function of the two systems is
+
+
+
+
+
+$$H_1(f)=\sum_{n=-\infty}^{\infty}h_1(n)e^{-j2\pi fn}$$
+
+$$H_1(f)=\sum_{n=-\infty}^{\infty}\delta(n)e^{-j2\pi fn}-a \delta(n-1)e^{-j2\pi fn}$$
+
+$$H_1(f)=\delta(0)e^{-j2\pi f\cdot 0}-a \delta(1-1)e^{-j2\pi f\cdot 1}$$
+$$H_1(f)=1-ae^{-j2\pi f}$$
+
+This gives us 
+$$S_{y_1y_1}(f)=\frac{\left|1-ae^{-j2\pi f}\right|^2}{1+a^2-2 a \cos \omega}$$
+$$S_{y_1y_1}(f)=\frac{\left(1-ae^{-j\omega}\right)\left(1-ae^{j\omega}\right)}{1+a^2-2 a \cos \omega}$$
+"same" as 1a
+$$S_{y_1y_1}(f)=1$$
+
+then by adding the second filter we get
+
+$$
+S_{y y}(f)=\left|H_2(f)\right|^2 S_{y_1 y_1}(f)= \begin{cases}\cos ^2(2 \pi f) & |f| \leq \frac{1}{4} \\ 0 & \frac{1}{4}<|f| \leq \frac{1}{2}\end{cases}
+$$
+
+As the filter has a cutoff at $|f| \leq \frac{1}{4}$ we can get the total energy by
+
+$$E_y=\int_{-\frac{1}{4}}^{\frac{1}{4}}\cos^2(2\pi f)df=\frac{1}{4}$$

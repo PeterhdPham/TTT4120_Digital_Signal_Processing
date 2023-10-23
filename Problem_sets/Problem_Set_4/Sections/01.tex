@@ -1,0 +1,20 @@
+\section{Problem 1 (2 points)}
+\textbf{Given a filter with transfer function}
+
+\[H(z)=\frac{1}{1-a z^{-1}}\]
+
+\subsection*{(a) Draw the pole-zero plot for the filter given \( a=0.9 \) and \( a=-0.9 \). Determine the filter type for two filters? Explain using the pole-zero plot.}
+We can rewrite the transfer function as 
+
+\[H(z)=\frac{z}{z-a}\]
+
+This gives us 1 zero when z=0 for both case $a=0.9$ and $a=-0.9$, we howewer get a pole at $z=0.9$ when $a=0.9$ and a pole at $z=-0.9$ when $a=-0.9$
+
+this gives us the pole zero plots:
+\importimagewcaption{1a.png}{pole-zero plot for the filter given \( a=0.9 \) and \( a=-0.9 \).}
+
+Here we can see that when $a=0.9$, $H(z)$ will increase as $z$ increase, this indicates that the it is a low pass filter. The opposite happens when $a=-0.9$ as the pole is on the negative side of the imaginary axis. We can also se this in the magnitude plots
+\importimagewcaption{1a2.png}{Magnitude plot for the filter given \( a=0.9 \) and \( a=-0.9 \).}
+
+\subsection*{(b) Verify the results in 1(a) with pezdemo. The demo can be downloaded from the course home page.}
+

@@ -1,0 +1,38 @@
+\section{Problem 3 (2 points)}
+
+\textbf{Consider the simple filter structure in figure \ref{fig:echo_generator.png}. The output signal $y[n]$ is
+composed of the input signal $x[n]$ and a delayed (by $R$ samples) and scaled
+(by the factor $\alpha$) replica of the input.}
+
+\importimagewcaptionw{echo_generator.png}{Filter structure of single-echo-generating filter}{0.4}
+\subsection*{Find the transfer function $H(z)$ for the filter in figure \ref{fig:echo_generator.png}. }
+
+$$
+\begin{aligned}
+Y(z) & =X(z)+\alpha z^{-R} X(z) \\
+& =X(z)\left(1+\alpha z^{-R}\right) \\
+H(z) & =\frac{Y(z)}{X(z)}=1+\alpha z^{-R}
+\end{aligned}
+$$
+
+\subsection*{Given a sample frequency of $22050 \mathrm{~Hz}$ for the input signal. What is the delay in
+seconds for a given delay $R$ ? }
+
+We can find the delay in seconds by dividing the delay with the sampling frequency.
+
+\subsection*{Implement the filter in MATLAB, plot the unit sample response and the frequency response. (Hint: You can use the MATLAB functions impz and freqz) }
+\importimagewcaption{image4.png}{unit sample response}
+\importimagewcaption{image5.png}{frequency response}
+
+\subsection*{Load the sound file piano.wav. The sample frequency is $22050 \mathrm{~Hz}$. (Available on It's learning). Pass it through the filter and observe the effect for different values of $R$ and $\alpha$. Comment!}
+
+The echo gets more pronounced with an increased $R$ and $\alpha$
+
+\importimagewcaption{image41.png}{Filter structure for generating $N$ echoes.}
+
+\subsection*{Implement the filter in figure 2 in MATLAB. Vary the parameters R, $\alpha$ and N (where R is the spacing between echoes and N is the number of echoes, $\alpha$ as above).}
+sounds more like in a hall
+
+\subsection*{Notice the difference in impulse response compared to the single-echo case.}
+\importimagewcaption{image6.png}{unit sample response filter 2}
+\importimagewcaption{image7.png}{frequency response filter 2}

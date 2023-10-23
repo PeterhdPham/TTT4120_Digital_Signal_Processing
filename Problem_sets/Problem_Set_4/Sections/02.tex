@@ -1,0 +1,15 @@
+\section{Problem 2 (2 points)}
+\textbf{Consider a causal digital filter with transfer function}
+\[H(z)=\frac{1}{\left(1-\frac{1}{2} z^{-1}\right)\left(1+\frac{1}{2} z^{-1}\right)}\]
+\subsection*{(a) Find the transfer function of the inverse filter of \( H(z) \)}
+As $H(z)=\frac{B(z)}{A(z)}$, we can find transfer function of the inverse filter of \( H(z) \) by switching the numerator  with the denominator $H^{-1}(z)=\frac{A(z)}{B(z)}$. This gives us
+\[H^{-1}(z)=\frac{\left(1-\frac{1}{2} z^{-1}\right)\left(1+\frac{1}{2} z^{-1}\right)}{1}\]
+We can further rewrite too
+\[H^{-1}(z)=\frac{\left(z-\frac{1}{2}\right)\left(z+\frac{1}{2}\right)}{z}\]
+\subsection*{(b) Is the inverse filter stable? Justify the answer.}
+In this filter we can se that we get a pole when $z=0$, as the pole is inside the unit circle we know that the system is stable. Howewer this implies that the system gets an infinite gain at $z=0$ or at DC this is not realizable. This make sthe filter not stable in a practical sense.
+\subsection*{(c) Is the inverse filter a minimum-phase filter?}
+The definition for a miminum-phase system is whenever all zeros and poles are inside the unit circe. This stands true for this filter as the zeros are at $z=\frac{1}{2}$ and $z=-\frac{1}{2}$.
+\subsection*{(d) Does the inverse filter have a linear phase characteristics? Justify your answer.}
+
+As the zeros doesn't have a corresponding symmetric counterpart, and the 2 we have aren't symmetric with respect to the unit circle, the inverse filter does not have a linear phase charasteristics.

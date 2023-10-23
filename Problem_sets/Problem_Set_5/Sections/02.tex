@@ -1,0 +1,29 @@
+\section{Problem 2 (3 points)}
+
+\textbf{The emitted signal will be attenuated and contaminated by noise as it travels through the air, so the received signal is given by
+$$
+y(n)= \begin{cases}\alpha x(n-D)+w(n), & \text { if an object is hit } \\ w(n), & \text { if no object is hit }\end{cases}
+$$
+where $\alpha$ is the attenuation factor, $D$ is the delay, and $w(n)$ is the noise.}
+
+\subsection*{(a) Plot the signals $x(n)$ and $y(n)$. Can you determine reliably whether an object has been hit by the emitted signal from these two plots only? Explain.}
+
+\importimagewcaption{2a_x(n).png}{$x(n)$}
+
+\importimagewcaption{2a_y(n).png}{$y(n)$}
+
+From the two plots we can't relibly determine whenever an object has hit the emitted signal. It is difficult to determine whenever the recieved signal is noise or the attenuated signal. My best guess is at $n=150$ aas this is the highest peak.
+
+\subsection*{(b) Find the crosscorrelation function $r_{yx}(l)$ by using the Matlab function
+xcorr.}
+
+\importimagewcaption{2b_rxx(l).png}{$r_{yx}(l)$}
+
+\subsection*{(c) Find the crosscorrelation function $r_{yx}(l)$ by using the Matlab function
+conv.}
+
+\importimagewcaption{2b_rxx(l).png}{$r_{yx}(l)$}
+
+\subsection*{(d) Based on the plot of $r_{y x}(l)$, find out whether an object has been hit by the emitted signal, and f so, determine the value of the delay $D$. Is this result more reliable than that of the direct comparisson of the signals $x(n)$ and $y(n)$ in $2 \mathrm{a})$ ?}
+
+I would say whe use of crosscorrelation is a much more reliable way of finding the attenuated signal rather than the direct comparisson of the signals $x(n)$ and $y(n)$ in $2 \mathrm{a})$

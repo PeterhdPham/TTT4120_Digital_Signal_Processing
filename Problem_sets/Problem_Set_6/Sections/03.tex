@@ -1,0 +1,34 @@
+\section{Problem 3: Spectral Estimation [2.5 points]}
+\textbf{In this problem we will use DFT to estimate the spectrum of a discrete-time signal based on finite signal segments. The following signal is considered}
+$$
+x(n)=\sin \left(2 \pi f_1 n\right)+\sin \left(2 \pi f_2 n\right),
+$$
+\textbf{where $f_1=7 / 40$ and $f_2=9 / 40$.}
+\subsection*{(a) Sketch the magnitude spectrum of the sampled signal, $|X(f)|$ for $f \in[0,0.5]$.}
+
+\importimagewcaption{3a.png}{magnitude spectrum of the sampled signal, $|X(f)|$ for $f \in[0,0.5]$.}
+
+\subsection*{(b) Use Matlab to generate a segment of length 100 of the signal $x(n)$.}
+\importimagewcaption{3b.png}{Segment of length 100 of the signal $x(n)$.}
+
+
+\subsubsection*{Use DFT of length 1024 to estimate the spectrum $X(f)$ based on this signal segment.}
+\importimagewcaption{3b2.png}{DFT of length 1024 to estimate the spectrum $X(f)$.}
+
+
+\subsubsection*{Plot the estimated magnitude spectrum for $f \in[0,0.5]$.}
+
+
+\subsubsection*{Repeat the above with segment lengths equal to 1000,30 and 10 .}
+\importimagewcaption{3b3.png}{Plot of the estimated magnitude spectrum for $f \in[0,0.5]$ with segment lengths equal to 1000,30 and 10.}
+
+
+\subsubsection*{Compare with the sketch in (a) and explain the similarities and differences.}
+It does look wuite similar as in (a) wt an increased N, We can se that at a very high segment lenght we can se that $f_1$ is more dominant than $f_2$
+
+\subsection*{(c) Repeat (b) with segment of length 100 of the signal $x(n)$, using DFT lengths equal to 256 and 128 .
+What effect does the DFT length have on spectral estimation.}
+
+\importimagewcaption{3c.png}{Plot of the estimated magnitude spectrum for $f \in[0,0.5]$using DFT lengths equal to 256 and 128}
+
+As the DFT length increases, the frequency resolution improves. In the plots, you can observe that the spectrum with DFT length 256 provides a more detailed representation compared to the one with DFT length 128.

@@ -1,0 +1,23 @@
+\section{Problem 2: Linear Convolution [2.5 points]}
+\textbf{The sequence $x(n)$ from Problem 1 is filtered through a FIR filter with unit sample response given by}
+$$
+h(n)= \begin{cases}1 & n=0, \ldots, N_h-1, \\ 0 & \text { otherwise },\end{cases}
+$$
+\textbf{where $N_h=9$.}
+\subsection*{(a) Use Matlab to compute and plot the output signal $y(n)$ in the time domain. Useful Matlab functions: ones, conv, stem. \\What is the length of $y(n), N_y$ ? Does it agree with theory? Explain.}
+\importimagewcaption{2a.png}{Plot of the output signal $y(n)$ in the time domain.}
+Length of $y(n)$, $N_y = 36$ this corresponds nice witht the theory as the lenght will be $N_x+N_h-1$
+
+
+\subsection*{(b) Use Matlab to compute and plot the output signal $y(n)$ via the frequency domain using DFT/IDFT. Useful Matlab functions: fft, ifft.}
+
+\subsubsection*{How should the DFT/IDFT lengths be chosen in order to obtain exact values of $y(n)$ using the above algorithm? Explain why.}
+The lenghts of the $DTF/IDFT$ should be as long as the lenght of $y(n)$, $N_y = 36$.
+\subsubsection*{Run your Matlab program with DFT/IDFT lengths set to $N_y / 4, N_y / 2$, $N_y$ and $2 N_y$. Plot each result together with the output signal obtained in (a) (use different colors) and compare. Explain your observations.}
+
+\importimagewcaption{2b9.png}{$\frac{N_y}{4}$}
+\importimagewcaption{2b18.png}{$\frac{N_y}{2}$}
+\importimagewcaption{2b36.png}{$N_y$}
+\importimagewcaption{2b72.png}{$2N_y$}
+
+Had to do in 4 sepparate plots so the stems wouldn't overlap and hide each other. I did it in python as i have had a lot of issues using MatLab on Linux.

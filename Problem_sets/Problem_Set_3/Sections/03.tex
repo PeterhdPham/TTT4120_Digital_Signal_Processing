@@ -1,0 +1,90 @@
+\section{Problem 3 (3 points)}
+\textbf{Consider a linear time-invariant (LTI) system with unit pulse response $h[n]$ and input signal $x[n]$.}
+
+\begin{equation*}
+    \begin{array}{l}h[n]=\left\{\begin{array}{ll}\frac{1}{2^{n}} & n \geq 0 \\ 0 & n<0,\end{array}\right. \\ x[n]=\left\{\begin{array}{ll}1 & n \geq 2 \\ 0 & \text { otherwise. }\end{array}\right.\end{array} 
+\end{equation*}
+
+\subsection*{(a) Determine the z-transform of the unit pulse response $h[n]$ and input signal $x[n]$ and their respective ROCs.}
+
+The Z-transform for a causal sequence is given by:
+
+\begin{equation*}
+    X(z) = \sum_{n=0}^{\infty} x[n] \cdot z^{-n}
+\end{equation*}
+
+For the unit pulse response \( h[n] = \frac{1}{2^n} \) for \( n \geq 0 \), substituting into the Z-transform formula gives:
+
+\begin{equation*}
+    H(z) = \sum_{n=0}^{\infty} \left( \frac{1}{2} \right)^n \cdot z^{-n}
+\end{equation*}
+
+This is a geometric series with the first term \( a = 1 \) and the common ratio \( r = \frac{1}{2} \cdot z^{-1} \). The sum of an infinite geometric series is given by:
+
+\begin{equation*}
+    S = \frac{a}{1 - r}
+\end{equation*}
+
+Substituting the values of \( a \) and \( r \) we get:
+
+\begin{equation*}
+    H(z) = \frac{1}{1 - \frac{1}{2} \cdot z^{-1}} = \frac{z}{z - \frac{1}{2}}
+\end{equation*}
+
+The Region of Convergence (ROC) for this Z-transform is \( |z| > \frac{1}{2} \).
+
+
+Given the signal \(x[n]\) which is 1 for \(n \geq 2\) and 0 otherwise, the Z-transform \(X(z)\) is represented as:
+
+\begin{equation*}
+    X(z) = z^{-2} + z^{-3} + z^{-4} + \ldots = \frac{z^{-2}}{1 - z^{-1}} = \frac{1}{z^2(1 - z^{-1})}
+\end{equation*}
+The Z-transform of \( x[n] \) is:
+\begin{equation*}
+    X(z) = \frac{1}{z^2(1 - z^{-1})}
+\end{equation*}
+
+The Region of Convergence (ROC) for \( x[n] \) is \( |z| > 0 \).
+
+\subsection*{(b) Derive an expression for the output signal $y[n]$ by performing the convolution in the time domain.}
+
+To find \( y[n] \), we perform the convolution of \( x[n] \) and \( h[n] \):
+
+\begin{equation*}
+    y[n] = x[n] * h[n] = \sum_{k=-\infty}^{\infty} x[k] \cdot h[n - k]
+\end{equation*}
+
+Given \( x[n] = 1 \) for \( n \geq 2 \) and \( h[n] = \frac{1}{2^n} \) for \( n \geq 0 \), we will have non-zero terms only when \(k \geq 2\) and \(n - k \geq 0\), so the lower limit for \(k\) in the summation will be 2 and the upper limit will be \(n\).
+
+\begin{equation*}
+    y[n] = \sum_{k=2}^{n} \frac{1}{2^{n - k}} = \frac{1}{4} \left(1 + \frac{1}{2} + \frac{1}{4} + \ldots + \frac{1}{2^{n - 2}} \right), \quad \text{for } n \geq 2
+\end{equation*}
+
+
+
+\subsection*{(c) Derive an expression for the output signal $y[n]$ using the z-transform.}
+
+
+To derive the expression for the output signal \(y[n]\) using the z-transform, we multiply the Z-transforms of the input signal \(x[n]\) and the unit pulse response \(h[n]\) and then find the inverse Z-transform:
+
+\begin{equation*}
+    Y(z) = X(z) \cdot H(z) = \frac{1}{z^2(1 - z^{-1})} \cdot \frac{2z}{2z - 1} = \frac{2}{(z - 1)(2z - 1)}
+\end{equation*}
+
+Performing partial fraction decomposition on \(Y(z)\), we get:
+
+\begin{equation*}
+    Y(z) = -\frac{4}{2z - 1} + \frac{2}{z - 1}
+\end{equation*}
+
+Thus, we have:
+
+\begin{equation*}
+    A = 0, \quad B = -4, \quad C = 2
+\end{equation*}
+
+The inverse Z-transform for each term separately is:
+
+\begin{equation*}
+    y[n] = -4 \left( \frac{1}{2} \right)^n u[n] + 2u[n] = -2^n u[n] + 2u[n], \quad \text{for } n \geq 0
+\end{equation*}

@@ -1,0 +1,96 @@
+\section{Problem 1 (2.5 points)}
+Consider the two causal analog filters shown in Figure \ref{fig:analog_filters.png}.
+\importimagewcaption{analog_filters.png}{Analog filters}
+
+\subsection*{(a) Derive the differential equations and transfer functions for the two filters.}
+
+For the RC filter
+
+\begin{align*}
+    v_R(t)&=Ri(t)\\
+    i(t)&=C\frac{dv(t)}{dt}\\
+    v_R(t)&=RC\frac{dv(t)}{dt}\\
+\end{align*}
+
+using KVL we get
+
+\begin{align*}
+    x(t)&=v_R(t)+v_C(t)\\
+    x(t)&=RC\frac{dv(t)}{dt}+v_C(t)\\
+    y(t)&=x(t)-RC\frac{dv(t)}{dt}
+\end{align*}
+
+The transfer function $H(s)=\frac{Y(s)}{X(s)}$ 
+
+\begin{align*}
+    \mathcal{L}\left\{ x(t)\right\} &= R C \cdot \mathcal{L}\left\{ \frac{dy(t)}{dt}\right\}+\mathcal{L}\left\{ y(t)\right\} \\
+    X(s) &= R C s Y(s) + Y(s)
+\end{align*}
+
+This gives us
+
+\begin{align*}
+    H(s)&=\frac{Y(s)}{X(s)}=\frac{Y(s)}{R C s Y(s) + Y(s)}\\
+    H(s)&=\frac{1}{RCs+1}
+\end{align*}
+
+For the RL filter
+
+\begin{align*}
+    v_R(t)&=Ri(t)\\
+    v_L(t)&=L\frac{di(t)}{dt}
+\end{align*}
+
+using KVL we get
+
+\begin{align*}
+    x(t)&=Ri(t)+L\frac{di(t)}{dt}\\
+    y(t)&=x(t)-Ri(t)
+\end{align*}
+
+
+To find the transfer function we need to take the laplace transform:
+
+\begin{align*}
+    \mathcal{L}\left\{ x(t)\right\} &= R\mathcal{L}\left\{i(t)\right\}+L\mathcal{L}\left\{ \frac{di(t)}{dt})\right\} \\
+    X(s) &= RI(s)+ LsI(s)\\
+    \mathcal{L}\left\{ y(t)\right\} &= \mathcal{L}\left\{x(t)\right\}-R\mathcal{L}\left\{i(t)\right\} \\
+    Y(s) &= LsI(s)+RI(s)-RI(s) 
+\end{align*}
+
+\begin{align*}
+    H(s)&=\frac{Y(s)}{X(s)}=\frac{LsI(s)}{RI(s)+ LsI(s)}\\
+    H(s)&=\frac{LsI(s)}{L  s I(s) + RI(s)}\\
+    H(s)&=\frac{Ls}{L s + R}
+\end{align*}
+
+\subsection*{(b) Determine frequency responses and filter types (i.e. lowpass, highpass, bandpass, bandstop) for the filters.}
+
+For the RL filter the capacitor will ground all high frequencies, therefore it is a lowpass filter. The RL filter will ground all low frequencies, therefore it is a highpass filter.
+
+\subsection*{(c) Derive the unit pulse responses for the filters.}
+We can derive the unit pulse response for the filter by taking the inverse Laplace transform of the transfer function, $H(s)$. We can use this by using a inverce laplace table.
+
+For the RC filter we have
+
+\begin{equation*}
+    \frac{1}{s-a}=e^{at}
+\end{equation*}
+
+\begin{equation*}
+    h(t)=\mathcal{L}^{-1}\left\{ H(s)\right\} =e^{-\frac{t}{RC}}u(t)
+\end{equation*}
+
+For the RL filter we have:
+
+\begin{align*}
+    H(s)&=\frac{Ls}{L s + R}\\
+    &=1-\frac{R}{L s + R}\\
+    &=1-\frac{1}{\frac{R}{L} s+1}
+\end{align*}
+
+this using the same equation from the table we get
+
+\begin{equation*}
+    h(t)=\delta(t)- e^{-\frac{tR}{L}}u(t)
+\end{equation*}
