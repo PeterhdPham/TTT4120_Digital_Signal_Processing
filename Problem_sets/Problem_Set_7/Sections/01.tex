@@ -1,0 +1,108 @@
+\section{Problem 1 (4 points)}
+
+\textbf{Given three different types of white noise with unit variance:}
+\begin{itemize}
+    \item White binary noise (each sample takes the value -1 or 1 with the same probability)
+    \item White Gaussian noise (each sample has a normal distribution)
+    \item White uniform noise
+\end{itemize}
+
+\subsection*{(a) For each noise type, generate and plot one realization of length 100 samples. (Useful Matlab functions: rand and randn)}
+\begin{itemize}
+    \item What do these noises have in common?
+    \item How do they differ?
+\end{itemize}
+
+We start by describing the noises individualy:
+
+\subsubsection*{White binary noise:}
+Binary noise consist of a signal consisting of only binary values, this means that the signal is either 1 or 0, when you have a long sequence of random sequence of 1s and 0s you will end up with a signal where all frequencies are equally represented.
+\importimagewcaptionw{1aBinary.png}{Plot of white binary noise with a length of 100}{1}
+\importimagewcaptionw{1aBinaryDistro.png}{Plot of the distrobution of the white binary noise with a length of 100}{1}
+
+\subsubsection*{White Gaussian noise:}
+This noise has amplitude values that are statistically distributed according to the Gaussian distrobution. It is a white noise because it has a flat spectrum, meaning all frequencies are equally likely
+\importimagewcaptionw{1aGaussian.png}{Plot of white Gaussian noise with a length of 100}{1}
+\importimagewcaptionw{1aGaussianDistro.png}{Plot of the distrobution of the white Gaussian noise with a length of 100}{1}
+
+\subsubsection*{White uniform noise:}
+This noise has a amplitude value that are distributed uniformily across a vertain range
+\importimagewcaptionw{1aUniform.png}{Plot of white uniform noise with a length of 100}{1}
+\importimagewcaptionw{1aUniformDistro.png}{Plot of the distrobution of the white uniform noise with a length of 100}{1}
+We can se in the figures \ref{fig:1aBinary.png}, \ref{fig:1aGaussian.png} and \ref{fig:1aUniform.png} That what they have in common is the sqeuence of positive and negative values are random, this is what gives the signals its "white" noise features.
+
+They differ in terms of amplitude, from figure \ref{fig:1aBinaryDistro.png} we can si that binary are either 1 or 0, \ref{fig:1aGaussianDistro.png} we can se that the the distrobution of amplitude is normalised and in figure \ref{fig:1aUniformDistro.png} we can se that the distrobution of amplitude is wait for it.... uniform! After playing a longer sequence of the diffrent noises, I was also able to observe that the binary was the loudest, then Gaussian, and then uniform being the most quiet. This was with binary having a random choice between 1 and -1, Gaussian having a normal distrobution with mean being 0 and standard deviation being 1, and lastly uniform having a uniform distrobution between 1 and -1.
+
+\subsection*{(b) For each noise type}
+\begin{itemize}
+    \item write an expression for the probability distribution
+    \item compute the mean value, autocorrelation function and power density spectrum
+\end{itemize}
+
+\subsubsection*{Probability distrobution of white binary noise:}
+$$
+P_x=\left(\begin{array}{l}
+n \\ x
+\end{array}\right) p^x q^{n-x}
+$$
+\subsubsection*{Probability distrobution of white Gaussian noise:}
+$$f(x)=\frac{1}{\sigma \sqrt{2\pi}}e^{-\frac{1}{2}\frac{x-\mu}{\sigma}}$$
+where $\sigma$ is the standard deviation, $\mu$ is mean and $x$ being the amplitude.
+\subsubsection*{Probability distrobution of white uniform noise:}
+$$f(x)=\frac{1}{b-a}$$
+where $a$ is the minimum amplitude and $b$ is the maximum amplitude
+
+When computing the mean value of the diffrent noises, I ended up with values approximately to 0:
+\begin{itemize}
+    \item Mean Value of Binary White Noise: -0.08
+    \item Mean Value of White Gaussian Noise: 0.11586957047161961
+    \item Mean Value of White Uniform Noise: 0.03997036015289663
+\end{itemize}
+This is expected as a ideal mean for white noise should be zero
+
+When plotting the autocorrelation we got:
+\importimagewcaptionw{1bAutocorrelationBinary.png}{Autocorrelation of binary white noise}{1}
+\importimagewcaptionw{1bAutocorrelationGaussian.png}{Autocorrelation of Gaussian white noise}{1}
+\importimagewcaptionw{1bAutocorrelationUniform.png}{Autocorrelation of uniform white noise}{1}
+
+
+When plotting the power deinsity spectrum we got:
+\importimagewcaptionw{1bPowerDensitySpectrumBinary.png}{Power density spectrum of }{1}
+\importimagewcaptionw{1bPowerDensitySpectrumGaussian.png}{Power density spectrum of Gaussian white noise}{1}
+\importimagewcaptionw{1bPowerDensitySpectrumUniform.png}{Power density spectrum of uniform white noise}{1}
+
+\subsection*{(c) We would now like to estimate the statistical properties of the three noise types based on a noise segment.}
+\begin{itemize}
+    \item Generate a segment of 20000 samples for each noise type.
+    \item Compute mean value estimates and compare to the theoretical values computed in (b).
+    \item Compute estimates of the autocorrelation function. Plot them on the interval $[-10,10]$, and compare to the theoretical values computed in (b).
+\end{itemize}
+
+
+
+\importimagewcaptionw{1cBinary.png}{Plot of white binary noise with a length of 20000}{1}
+\importimagewcaptionw{1cBinaryDistro.png}{Plot of the distrobution of the white binary noise with a length of 20000}{1}
+\importimagewcaptionw{1cGaussian.png}{Plot of white Gaussian noise with a length of 20000}{1}
+\importimagewcaptionw{1cGaussianDistro.png}{Plot of the distrobution of the white Gaussian noise with a length of 20000}{1}
+\importimagewcaptionw{1cUniform.png}{Plot of white uniform noise with a length of 20000}{1}
+\importimagewcaptionw{1cUniformDistro.png}{Plot of the distrobution of the white uniform noise with a length of 20000}{1}
+
+When computing the mean value of the diffrent noises we got:
+\begin{itemize}
+    \item Mean Value of Binary White Noise: -0.0036
+    \item Mean Value of White Gaussian Noise: 0.0025846854929424063
+    \item Mean Value of White Uniform Noise: 0.00016222991807518508
+\end{itemize}
+This is also expected as a longer sequence will be able have "more random" sequences and therefor be better at represent all the frequencies 
+
+When plotting the autocorrelation we got:
+\importimagewcaptionw{1cAutocorrelationBinary.png}{Autocorrelation of binary white noise}{1}
+\importimagewcaptionw{1cAutocorrelationGaussian.png}{Autocorrelation of Gaussian white noise}{1}
+\importimagewcaptionw{1cAutocorrelationUniform.png}{Autocorrelation of uniform white noise}{1}
+
+We se that the autocorrelation is greater for a higher sequence, this is because there is a greater chance of a similar sequence more places on on the signal when the sequence length increases.
+
+When plotting the power deinsity spectrum we got:
+\importimagewcaptionw{1cPowerDensitySpectrumBinary.png}{Power density spectrum of }{1}
+\importimagewcaptionw{1cPowerDensitySpectrumGaussian.png}{Power density spectrum of Gaussian white noise}{1}
+\importimagewcaptionw{1cPowerDensitySpectrumUniform.png}{Power density spectrum of uniform white noise}{1}
