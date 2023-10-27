@@ -1,1 +1,19 @@
-\section{Problem 3: Spectral Estimation [2.5 points]}
+\section{Problem 3 (3 points)}
+\textbf{This problem deals with the statistical properties of the mean estimator $\hat{m}_x$.}
+\subsection*{(a) Use the realization of signal $x[n]$ generated in Problem 2c), and compute 200 mean estimates based on nonoverlapping segments of length $K=20$.}
+Writing the first 10 mean estimates:
+-0.09814215010018247, 0.3035875863738622, -0.20854327404628908, 0.08203965191883893, 0.16622584560587167, 0.20174441955570285, 0.1873038770870635, -0.04815623770506109, -0.007319351280463104, -0.002238756800624686.
+\subsection*{(b) Use the Matlab function hist to plot the histogram of the mean estimates. Use 20 histogram bins.}
+\importimagewcaption{3b.png}{Histogram of the mean estimates}
+\subsection*{(c) Use the Matlab functions mean and var to estimate the mean and variance of $\hat{m}_x$.}
+\begin{itemize}
+    \item means k=20:-0.00012022523022167375
+    \item variance k=20:0.019823887283148035
+    \item means k=40:-0.00012022523022167286
+    \item variance k=40:0.008598811045152263
+    \item means k=100:-0.00012022523022167108
+    \item variance k=100:0.003670062692836803
+\end{itemize}
+
+\subsection*{(e) Compare the results obtained with different values of $K$. Do they agree with the theoretical results on the statistical properties of the mean estimator $\hat{m}_x$ ? Explain!}
+The means stay the same, while the variance decreases. As the segment length K increases, the sample mean estimator becomes more consistent, as evidenced by the decreasing variance.

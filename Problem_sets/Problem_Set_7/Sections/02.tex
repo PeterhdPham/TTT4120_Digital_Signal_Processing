@@ -70,16 +70,39 @@ $$
 $$
 
 $$\begin{aligned}
-    X(f)&=\sum_{l=-\infty}^{\infty}\left(\frac{1}{2}\right)^{-l}e^{-i2\pi l}\\
-    &=\sum_{l=-\infty}^{\infty}2^{-l}e^{-i2\pi l}\\
-    &=\sum_{l=0}^{\infty}2^{l}e^{-i2\pi l}+\sum_{l=1}^{\infty}2^{-l}e^{-i2\pi l}
-    &=
+    X(f)&=\sum_{l=-\infty}^{\infty}\left(\frac{1}{2}\right)^{-l}e^{-j2\pi f l}\\
+    &=\sum_{l=-\infty}^{\infty}2^{-l}e^{-j2\pi f l}\\
+    &=\sum_{l=0}^{\infty}2^{l}e^{-j2\pi f l}+\sum_{l=1}^{\infty}2^{-l}e^{-j2\pi fl}\\
+    &=\sum_{l=0}^{\infty}\left(2e^{-j2\pi f}\right)^l+\sum_{l=1}^{\infty}\left(\frac{1}{2}e^{-j2\pi f }\right)^l\\
+    &=\frac{1}{1-\left(2e^{-j2\pi f}\right)}+\frac{1}{1-\frac{1}{2}e^{-2\pi f}}-1
 \end{aligned}$$
 
+\subsection*{Power}
+$$P_x=\gamma_{xx}(0)$$
+
+this gives us 
+
+$$\gamma_{x x}(0)=\left(\frac{1}{2}\right)^0=1$$
 
 
 \subsection*{(b) Write the expressions for the estimators of the statistical properties in (a) based on a signal segment of length $N$.}
 
+\subsection*{Mean estimator:}
+
+$$\hat{m}_x=\frac{1}{N}\sum_{n=0}^{N-1}x[n]$$
+
+\subsection*{Autocorrelation function estimator:}
+
+$$\hat{\gamma}_{x x}(l)=\frac{1}{N-|l|} \sum_{n=0}^{N-|l|-1} x[n] \cdot x[n+|l|]$$
+\subsection*{Power density spectrum estimator:}
+
+$$
+\hat{\Gamma}_{X X}(f)=\sum_{l=-\infty}^{\infty} \hat{\gamma}_{X X}[l] e^{-j 2 \pi f l}
+$$
+where $\hat{\gamma}_{X X}[l]=\frac{1}{N} \sum_{n=0}^{N-|l|-1} x[n] x[n+|l|]$
+
+\subsection*{Power estimator:}
+$$\hat{P}=\frac{1}{N}\sum_{n=0}^{N_1}|x[n]|^2$$
 
 \subsection*{(c) Generate a segment of length $\mathrm{N}=20000$ samples of the signal $x[n]$.}
 \begin{itemize}
@@ -87,12 +110,18 @@ $$\begin{aligned}
     \item Compare the result to the theoretical values computed in a). (You should plot both theoretical and estimated values of the autocorrelation function and power density spectrum in order to compare them. The autocorrelation function should be plotted on the interval $[-10,10]$.
 \end{itemize}
 
+Mean estimator:  0.006558341682570523
+\importimagewcaption{2cautocorrelation.png}{Estimated autocorrelation}
+\importimagewcaption{2cpower.png}{Estimated power density}
+Power estimator: 0.9959633437887824
 
+The estimators and theoretical values does seen to fit.
 \subsection*{(d) Write a Matlab program that estimates the power density spectrum using Bartlett method.}
 \begin{itemize}
     \item Use the program to compute the estimate of the power density spectrum based on $\mathrm{K}=10$ and $\mathrm{K}=100$ nonoverlaping segments of the data generated in (c).
     \item Compare the estimate with the theoretical value and with the periodogram estimate.
 \end{itemize}
+
 
 
 \subsection*{(e) Repeat (c) and (d) several times to see how the obtained estimates vary when the different signal segments are used for the estimation.}
