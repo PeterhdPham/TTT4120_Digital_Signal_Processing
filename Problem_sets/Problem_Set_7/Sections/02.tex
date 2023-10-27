@@ -11,6 +11,66 @@ $$
     \item power
 \end{itemize}
 
+\subsection*{Mean}
+$$\begin{aligned} m_x =E[y(n)] & =E\left[\sum_{k=-\infty}^{\infty} h(k) w(n-k)\right] \\ & =\sum_{k=-\infty}^{\infty} h(k) E[w(n-k)] \\ & =m_w \sum_{k=-\infty}^{\infty} h(k)=m_w H(0)\end{aligned}$$
+
+As $m_w$ equals to 0, we get that the mean of $m_x$ also becomes 0.
+
+\subsection*{Autocorrelation function}
+$$
+\begin{aligned}
+\gamma_{x x}(l)  =E[x(n) x(n-l)] & =E\left[\sum_{k=-\infty}^{\infty} h(k) w(n-k) \sum_{m=-\infty}^{\infty} h(m) w(n-l-m)\right] \\
+& =\sum_{k=-\infty}^{\infty} \sum_{m=-\infty}^{\infty} h(k) h(m) E[w(n-k) w(n-l-m)] \\
+& =\sum_{k=-\infty}^{\infty} \sum_{m=-\infty}^{\infty} h(k) h(m) \gamma_{w w}(l+m-k) \\
+& =\sum_{n=-\infty}^{\infty}\left(\sum_{m=-\infty}^{\infty} h(m) h(m+n)\right) \gamma_{w w}(l-n) \\
+& =\sum_{n=-\infty}^{\infty} r_{h h}(n) \gamma_{w w}(l-n)=\gamma_{w w}(l) * r_{h h}(l)
+\end{aligned}
+$$
+Where  $\gamma_{w w}(l)$ is the autocorrelation of $w[n]$ and $r_{h h}(l)$ is the autocorrelation of $h{n}$
+
+We start by taking the invers z-transform of $H(z)$
+$$
+\begin{aligned}
+    H(z)&=\frac{1}{1+\frac{1}{2} z^{-1}}\\
+    &=\frac{z}{z+\frac{1}{2}}\\
+\end{aligned}
+$$
+
+From inverse z-transform table
+$$\frac{Az}{z-a}\xRightarrow{\mathscr{Z}^{-1}}Aa^n \cdot u[n]$$
+
+this gives us
+
+$$h[n]=\left(\frac{1}{2}\right)^n\cdot u[n]$$
+
+$$r_{hh}=\sum_{n=-\infty}^{\infty}h[n]\cdot h[n-l]$$
+
+as $h[n]$ consist of the unit step function we only need to sum from 0, this gives us 
+$$\begin{aligned}
+    r_{hh}&=\sum_{n=0}^{\infty}\left(\frac{1}{2}\right)^n\cdot \left(\frac{1}{2}\right)^{n-l}\\
+    &=\sum_{n=0}^{\infty}\left(\frac{1}{2}\right)^{2n-l}\\
+    &=\left(\frac{1}{2}\right)^{-l}\sum_{n=0}^{\infty}\left(\frac{1}{2}\right)^{2n}\\
+    &=\left(\frac{1}{2}\right)^{-l}\sum_{n=0}^{\infty}\left(\frac{1}{4}\right)^{n}\\
+    &=\left(\frac{1}{2}\right)^{-l}\cdot\frac{1}{1-\frac{1}{4}}\\
+    &=\left(\frac{1}{2}\right)^{-l}\cdot\frac{4}{3}
+\end{aligned}$$
+
+we end up with 
+$$\begin{aligned}
+    \gamma_{x x}(l)&=\frac{3}{4}\delta(l)*\left(\frac{1}{2}\right)^{-l}\cdot\frac{4}{3}\\
+    &=\delta(l)*\left(\frac{1}{2}\right)^{-l}\\
+    &=\left(\frac{1}{2}\right)^{-l}
+\end{aligned}$$
+
+\subsection*{Power density spectrum:}
+$$
+\begin{aligned}
+\Gamma_{x x}(f) & =\operatorname{DTFT}\left\{\gamma_{x x}(l)\right\}=\operatorname{DTFT}\left\{\gamma_{w w}(l) * r_{h h}(l)\right\} \\
+& =\operatorname{DTFT}\left\{\gamma_{w w}(l)\right\} \cdot \operatorname{DTFT}\left\{r_{h h}(l)\right\}=\Gamma_{w w}(f) S_{h h}(f) \\
+& =\Gamma_{w w}(f)|H(f)|^2
+\end{aligned}
+$$
+
 
 
 \subsection*{(b) Write the expressions for the estimators of the statistical properties in (a) based on a signal segment of length $N$.}
@@ -31,3 +91,4 @@ $$
 
 
 \subsection*{(e) Repeat (c) and (d) several times to see how the obtained estimates vary when the different signal segments are used for the estimation.}
+
