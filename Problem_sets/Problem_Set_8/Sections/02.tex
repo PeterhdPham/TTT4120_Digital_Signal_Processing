@@ -1,0 +1,110 @@
+\section{Problem 2 (3 points)}
+\textbf{A random process $x(n)$ is given by}
+$$
+x(n)=w(n)-0.4 w(n-1),
+$$
+\textbf{where $w(n)$ is white Gaussian noise with variance $\sigma_w^2=1$.}
+\subsection*{(a) Which type of process is $x(n)$ ? Justify your answer.}
+
+This is an autoregressive (AR) process as it is described in time domain as
+$$
+X[n]=-\sum_{k=1}^p a_k X[n-k]+W[n]
+$$
+where $P=1$
+\subsection*{(b) Find the autocorrelation function $\gamma_{x x}(l)$ and the power density spectrum $\Gamma_{x x}(f)$ for this process.}
+\subsection*{Autocorrelation function}
+
+$$
+\begin{aligned}
+\gamma_{x x}(l)  =E[x(n) x(n-l)] & =E\left[\sum_{k=-\infty}^{\infty} h(k) w(n-k) \sum_{m=-\infty}^{\infty} h(m) w(n-l-m)\right] \\
+& =\sum_{k=-\infty}^{\infty} \sum_{m=-\infty}^{\infty} h(k) h(m) E[w(n-k) w(n-l-m)] \\
+& =\sum_{k=-\infty}^{\infty} \sum_{m=-\infty}^{\infty} h(k) h(m) \gamma_{w w}(l+m-k) \\
+& =\sum_{n=-\infty}^{\infty}\left(\sum_{m=-\infty}^{\infty} h(m) h(m+n)\right) \gamma_{w w}(l-n) \\
+& =\sum_{n=-\infty}^{\infty} r_{h h}(n) \gamma_{w w}(l-n)=\gamma_{w w}(l) * r_{h h}(l)
+\end{aligned}
+$$
+Where  $\gamma_{w w}(l)$ is the autocorrelation of $w[n]$ and $r_{h h}(l)$ is the autocorrelation of $h(n)$. From the given equation we can conclude that the system's impulse response $h(n)$ is
+
+$$h(n)=\delta[n]-0.4\delta[n-1]$$
+
+this gives us the autocorrelation 
+
+$$r_{hh}(l)=h(l)*h(-l)$$
+
+as we have the delta function, we will only get a value for $n=0$ and $n=1$
+
+$$
+\begin{aligned}
+    r_{hh}(0)&=h(0)\cdot h(0)+h(1)\cdot h(1)\\
+    &=1^2+\left(-0.4\right)^2=1+0.16=1.16
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+    r_{hh}(1)&=h(0)\cdot h(-1)+h(1)\cdot h(0)\\
+    &= -0.4
+\end{aligned}
+$$
+The autocorrelation of the white noise process $\gamma_{w w}(l)$ is given by:
+$$
+\gamma_{w w}(l)=\sigma_w^2 \delta(l)
+$$
+
+Since $\sigma_w^2=1, \gamma_{w w}(l)=\delta(l)$.
+Now, we can find the autocorrelation function $\gamma_{x x}(l)$ by convolving $r_{h h}(l)$ with $\gamma_{w w}(l)$ :
+$$
+\gamma_{x x}(l)=\gamma_{w w}(l) * r_{h h}(l)
+$$
+
+This simplifies to:
+$$
+\gamma_{x x}(l)=\delta(l) * r_{h h}(l)
+$$
+
+Since convolving with a delta function is equivalent to sampling the function at the point where the delta is located, we get:
+$$
+\gamma_{x x}(l)=r_{h h}(l)
+$$
+
+So, the autocorrelation function $\gamma_{x x}(l)$ for $l=0, \pm 1$ is:
+$$
+\begin{aligned}
+& \gamma_{x x}(0)=1.16 \\
+& \gamma_{x x}(1)=\gamma_{x x}(-1)=-0.4 \\
+& \gamma_{x x}(l)=0, \text { for }|l|>1
+\end{aligned}
+$$
+
+\subsection*{Power density spectrum}
+$$\begin{aligned}
+    \Gamma_{x x}(f) & =\operatorname{DTFT}\left\{\gamma_{x x}(l)\right\}\\
+    &= \sum_{l=-1}^{1} \gamma_{x x}(l) e^{-j2\pi f l}\\
+    &=1.16-0.4e^{-j2\pi f}-0.4e^{j2\pi f}\\
+    &=1.16-1\left(\frac{0.8e^{2\pi f}+0.8e^{2\pi f}}{2}\right)\\
+    &=1.16-\cos (2\pi f)
+\end{aligned}$$
+
+
+\subsection*{(c) Calculate the coefficients of the optimal first, second and third order predictor for the process $x(n)$. (You can use Matlab to solve the Yule-Walker equations). Compute also the corresponding prediction error variances. Comment on the results.}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c c c}
+    \hline
+    Order & Coefficients & Prediction Error Variance \\
+    \hline
+    1 & $a_1 = -0.3448$ & $\sigma^2 = 1.0221$ \\
+    2 & $a_1 = -0.3914, a_2 = -0.1350$ & $\sigma^2 = 1.0035$ \\
+    3 & $a_1 = -0.3986, a_2 = -0.1560, a_3 = -0.0538$ & $\sigma^2 = 1.0006$ \\
+    \hline
+    \end{tabular}
+    \caption{Coefficients and Prediction Error Variances for AR Predictors}
+    \label{table:ar_predictors}
+    \end{table}
+
+We can se that when the order of predictor increases, the prediction error variance reduces as wellwe do howewer see that the there is a larger decrease from 1. to 2. order than 2. to 3. order, indicating that we will get diminishing returns for for each time we increase the order of predictors.
+
+\subsection*{(d) Write an expression for the power density spectrum estimate based on an AR $[\mathrm{p}]$ model.
+Plot the calculated power density spectrum together with its estimates based on AR[1], AR[2] and AR[3] models. (Use Matlab functions freqz.)
+Which of the AR models gives the best approximation of the MA process? Justify your answer.}
