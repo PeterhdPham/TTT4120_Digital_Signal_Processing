@@ -104,7 +104,24 @@ $$\begin{aligned}
     \end{table}
 
 We can se that when the order of predictor increases, the prediction error variance reduces as wellwe do howewer see that the there is a larger decrease from 1. to 2. order than 2. to 3. order, indicating that we will get diminishing returns for for each time we increase the order of predictors.
-
+\pagebreak
 \subsection*{(d) Write an expression for the power density spectrum estimate based on an AR $[\mathrm{p}]$ model.
 Plot the calculated power density spectrum together with its estimates based on AR[1], AR[2] and AR[3] models. (Use Matlab functions freqz.)
 Which of the AR models gives the best approximation of the MA process? Justify your answer.}
+The power density spectrum (PDS) of an AR(p) process can be estimated using the following expression:
+
+$$
+\hat{\Gamma}_{x x}(f)=\frac{\sigma^2}{\left|1-\sum_{k=1}^p a_k e^{-j 2 \pi f k}\right|^2}
+$$
+
+this gives us 
+$$
+\begin{aligned}
+    \hat{\Gamma}_{x x}^(1)(f)&=\frac{1.0221}{\left|1 -0.3448e^{-j 2 \pi f}\right|^2}\\
+    \hat{\Gamma}_{x x}^(2)(f)&=\frac{1.0035}{\left|1 -0.3914e^{-j 2 \pi f}-0.1350e^{-j 4 \pi f}\right|^2}\\
+    \hat{\Gamma}_{x x}^(3)(f)&=\frac{1.0006}{\left|1 -0.3986e^{-j 2 \pi f}-0.1560e^{-j 4 \pi f}-0.0538e^{-j 6 \pi f}\right|^2}
+\end{aligned}
+$$
+
+\importimagewcaptionw{2d.png}{Power density spectrum estimate vs theoretical PDS of MA process}{1}
+as figure \ref*{fig:2d.png} shows, the AR[3] model gives us the best approximation of the MA process.
